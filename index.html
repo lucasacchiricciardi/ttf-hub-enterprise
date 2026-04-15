@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TTF Enterprise - Upskilling Strategico B2B</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        brand: { 400: '#94a3b8', 500: '#64748b', 600: '#475569' },
+                        sky: { 400: '#38bdf8', 500: '#0ea5e9' },
+                        indigo: { 400: '#818cf8', 500: '#6366f1' },
+                        blue: { 400: '#60a5fa', 500: '#3b82f6' },
+                        amber: { 400: '#fbbf24', 500: '#f59e0b' }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Smooth Scroll behavior a livello globale */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body { font-family: 'Inter', sans-serif; }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+        }
+
+        .card-glass {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .text-glow { text-shadow: 0 0 20px rgba(255, 255, 255, 0.3); }
+        
+        /* FIX: Scroll Margin per compensare l'altezza della Nav fixed (circa 80px) */
+        section {
+            scroll-margin-top: 100px;
+        }
+
+        /* Custom Hover FX for Cluster Cards */
+        .cluster-card { transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .cluster-card:hover { transform: translateY(-8px); }
+        
+        .card-ict:hover { border-color: rgba(56, 189, 248, 0.5); box-shadow: 0 10px 40px -10px rgba(56, 189, 248, 0.2); }
+        .card-servizi:hover { border-color: rgba(99, 102, 241, 0.5); box-shadow: 0 10px 40px -10px rgba(99, 102, 241, 0.2); }
+        .card-pa:hover { border-color: rgba(59, 130, 246, 0.5); box-shadow: 0 10px 40px -10px rgba(59, 130, 246, 0.2); }
+        .card-industria:hover { border-color: rgba(245, 158, 11, 0.5); box-shadow: 0 10px 40px -10px rgba(245, 158, 11, 0.2); }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-200 min-h-screen font-sans selection:bg-slate-700/50 overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 py-4 px-6 border-b border-white/5 bg-slate-950/80 backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#" class="flex items-center gap-4 group cursor-pointer">
+                <img src="https://www.itstechtalentfactory.it/wp-content/uploads/2024/10/ITS-Academy-Tech-Talent-Factory.png" alt="Logo TTF" class="h-10 w-auto group-hover:brightness-125 transition duration-300" />
+                <div class="hidden sm:block h-6 w-px bg-white/10"></div>
+                <span class="font-bold text-lg hidden sm:inline uppercase tracking-tighter text-white">Enterprise <span class="text-slate-400">Hub</span></span>
+            </a>
+            <div class="hidden md:flex gap-8 text-xs font-black uppercase tracking-widest">
+                <a href="#il-metodo" class="hover:text-white text-slate-400 transition">Il Metodo</a>
+                <a href="#clusters" class="hover:text-white text-slate-400 transition">Industry Solutions</a>
+            </div>
+            <!-- Bottone con ancora corretta -->
+            <a href="#clusters" class="bg-white hover:bg-slate-200 text-slate-950 px-8 py-2.5 rounded-full text-xs font-black uppercase tracking-widest transition-all shadow-lg hover:scale-105 active:scale-95">
+                Esplora l'Offerta
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="pt-48 pb-32 px-6 relative overflow-hidden gradient-bg">
+        <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none" style="background-image: url('https://www.transparenttextures.com/patterns/cubes.png');"></div>
+        
+        <!-- Ambient Glows -->
+        <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-sky-600/20 blur-[120px] rounded-full pointer-events-none"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-amber-600/10 blur-[120px] rounded-full pointer-events-none"></div>
+
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <div class="inline-flex items-center gap-2 bg-white/5 text-slate-300 px-5 py-2 rounded-full text-[10px] font-black mb-10 border border-white/10 uppercase tracking-[0.2em]">
+                <i data-lucide="zap" class="w-3.5 h-3.5 text-yellow-400"></i> Fondazione ITS TechTalentFactory: L'Evoluzione del Business Talent.
+            </div>
+            <h1 class="text-6xl md:text-9xl font-black mb-8 tracking-tighter text-white leading-[0.85] text-glow uppercase">
+                Trasformiamo il <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-slate-200 to-slate-500">Know-How in Impatto.</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-400 mb-14 leading-relaxed max-w-3xl mx-auto font-light">
+                TechTalentFactory Enterprise non è solo una scuola. È un catalizzatore di crescita che mette il gettito dell'innovazione al servizio della tua Fondazione e dei partner territoriali.
+            </p>
+            <div class="flex justify-center gap-6 flex-wrap">
+                <a href="#clusters" class="bg-white text-slate-950 px-10 py-5 rounded-2xl font-black flex items-center gap-3 hover:bg-slate-200 transition shadow-2xl hover:scale-105 active:scale-95 text-sm uppercase tracking-widest">
+                    Esplora Industry <i data-lucide="arrow-down" class="w-5 h-5"></i>
+                </a>
+                <a href="#il-metodo" class="bg-transparent text-white px-10 py-5 rounded-2xl font-black flex items-center gap-3 border border-white/20 hover:bg-white/5 transition shadow-2xl text-sm uppercase tracking-widest">
+                    Scopri il Metodo
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- La Realtà dei Partner (Nuova Sezione Storytelling) -->
+    <section class="py-24 px-6 bg-slate-950">
+        <div class="max-w-7xl mx-auto border-y border-white/5 py-20">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="order-2 lg:order-1">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="card-glass p-8 rounded-3xl text-center">
+                            <div class="text-4xl font-black text-white mb-2">+100</div>
+                            <div class="text-[10px] font-black uppercase text-slate-500 tracking-widest">Aziende Partner</div>
+                        </div>
+                        <div class="card-glass p-8 rounded-3xl text-center border-t-sky-500/30 border-t-2">
+                            <div class="text-4xl font-black text-sky-400 mb-2">90%</div>
+                            <div class="text-[10px] font-black uppercase text-slate-500 tracking-widest">Placement Rate</div>
+                        </div>
+                        <div class="card-glass p-8 rounded-3xl text-center border-t-amber-500/30 border-t-2 col-span-2">
+                            <div class="text-4xl font-black text-amber-400 mb-2">Hub Strategico</div>
+                            <div class="text-[10px] font-black uppercase text-slate-500 tracking-widest">Sinergia Scuola-Azienda</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-1 lg:order-2">
+                    <h2 class="text-xs font-black uppercase tracking-[0.3em] text-slate-500 mb-4">La Realtà Fondazione</h2>
+                    <h3 class="text-4xl font-black text-white leading-tight mb-8">Un ecosistema di <span class="text-sky-400">Eccellenza Italiana.</span></h3>
+                    <p class="text-lg text-slate-400 font-light leading-relaxed mb-6">
+                        TechTalentFactory nasce per colmare il gap tra le competenze tecniche richieste dal mercato e l'offerta formativa tradizionale. Oggi siamo la casa di oltre 100 partner, dai giganti della System Integration alle eccellenze del manifatturiero lombardo.
+                    </p>
+                    <p class="text-lg text-slate-400 font-light leading-relaxed">
+                        Attraverso questa iniziativa Enterprise, la Fondazione evolve: non solo formiamo i talenti di domani, ma potenziamo i professionisti di oggi, creando un flusso di gettito sostenibile che alimenta la ricerca, l'innovazione e il valore pubblico sul territorio.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Il Metodo (Storytelling & Reverse Engineering) -->
+    <section id="il-metodo" class="py-32 px-6 bg-slate-950 relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
+                
+                <!-- Left: Testo Storytelling -->
+                <div>
+                    <h2 class="text-xs font-black uppercase tracking-[0.3em] text-slate-500 mb-4">L'Approccio Tecnico</h2>
+                    <h3 class="text-4xl md:text-6xl font-black text-white leading-tight tracking-tighter mb-8">
+                        Ingegneria Inversa <br/> per Soluzioni <span class="text-transparent bg-clip-text bg-gradient-to-r from-slate-300 to-slate-600">Reali.</span>
+                    </h3>
+                    
+                    <div class="space-y-6 text-lg text-slate-400 font-light leading-relaxed">
+                        <p>Abbiamo decostruito la formazione aziendale tradizionale, spesso slegata dalle necessità tecniche, per ricostruirla partendo dalla trincea.</p>
+                        
+                        <p>Il nostro metodo si basa sul <strong>Reverse Engineering</strong> degli asset didattici della Fondazione: abbiamo estratto le verticalità più evolute dei nostri docenti (professionisti senior del settore) per creare le <strong>M.V.O. (Minimum Viable Offers)</strong>.</p>
+                        
+                        <div class="bg-white/5 p-8 rounded-3xl border border-white/10 mt-8">
+                            <h4 class="text-white font-bold mb-3 flex items-center gap-3 uppercase tracking-tight">
+                                <i data-lucide="microscope" class="w-5 h-5 text-sky-400"></i> Cosa sono le MVO?
+                            </h4>
+                            <p class="text-sm">Sono percorsi Executive iper-modulari (40-80h) disegnati per risolvere colli di bottiglia specifici. Non insegniamo a usare un tool; insegniamo a ottimizzare una metrica, a blindare un'infrastruttura o a digitalizzare una commessa, garantendo un impatto immediato.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Framework Visual -->
+                <div class="relative">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-slate-800 to-slate-900 rounded-[3rem] transform rotate-3 scale-105 border border-white/5"></div>
+                    <div class="card-glass p-12 rounded-[3rem] relative shadow-2xl">
+                        <h4 class="text-2xl font-black text-white mb-10 uppercase tracking-tight">Il framework I.C.E. per le Imprese</h4>
+                        
+                        <div class="space-y-8">
+                            <div class="flex gap-6 items-start">
+                                <div class="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center shrink-0 border border-white/5">
+                                    <span class="text-2xl font-black text-white">I</span>
+                                </div>
+                                <div>
+                                    <h5 class="text-lg font-bold text-white mb-1">Impact (Risultato sul ROI)</h5>
+                                    <p class="text-sm text-slate-400">Massimizziamo il ritorno dell'investimento formativo risolvendo sprechi e sbloccando opportunità di business.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex gap-6 items-start">
+                                <div class="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center shrink-0 border border-white/5">
+                                    <span class="text-2xl font-black text-white">C</span>
+                                </div>
+                                <div>
+                                    <h5 class="text-lg font-bold text-white mb-1">Confidence (Esperienza in Trincea)</h5>
+                                    <p class="text-sm text-slate-400">Erogazione guidata dai professionisti che formano i nostri talenti ITS. Validità tecnica garantita.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-6 items-start">
+                                <div class="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center shrink-0 border border-white/5">
+                                    <span class="text-2xl font-black text-white">E</span>
+                                </div>
+                                <div>
+                                    <h5 class="text-lg font-bold text-white mb-1">Ease (Fattibilità Immediata)</h5>
+                                    <p class="text-sm text-slate-400">Format intensivi pensati per essere implementati in azienda senza interrompere i cicli produttivi.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Clusters (I 4 Portali) -->
+    <section id="clusters" class="py-32 px-6 bg-slate-900/50 border-t border-white/5">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl md:text-7xl font-black mb-6 uppercase tracking-tighter text-white">Scegli la tua <span class="text-slate-400">Industry</span></h2>
+                <p class="text-slate-400 text-xl font-light max-w-2xl mx-auto">
+                    Esplora i cataloghi MVO dedicati alla realtà specifica della tua organizzazione.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                
+                <!-- PORTAL 1: ICT -->
+                <a href="./ict/index.html" class="block">
+                    <div class="card-glass cluster-card card-ict p-12 rounded-[3rem] h-full flex flex-col relative overflow-hidden group">
+                        <div class="absolute -right-10 -top-10 w-40 h-40 bg-sky-500/10 blur-[50px] rounded-full group-hover:bg-sky-500/20 transition"></div>
+                        <div class="mb-8 w-16 h-16 rounded-2xl bg-sky-500/20 flex items-center justify-center">
+                            <i data-lucide="terminal" class="w-8 h-8 text-sky-400"></i>
+                        </div>
+                        <h3 class="text-3xl font-black text-white uppercase tracking-tight mb-4">System Integration & Software</h3>
+                        <p class="text-slate-400 text-base font-light mb-8 flex-grow">
+                            Soluzioni per grandi tech company. Upskilling su Agentic AI, DevSecOps, Hardening e Spatial Computing per team ad alte prestazioni.
+                        </p>
+                        <div class="flex items-center gap-3 text-sky-400 font-bold text-sm uppercase tracking-widest mt-auto">
+                            Esplora Moduli <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-2 transition"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- PORTAL 2: SERVIZI & BPO -->
+                <a href="./servizi/index.html" class="block">
+                    <div class="card-glass cluster-card card-servizi p-12 rounded-[3rem] h-full flex flex-col relative overflow-hidden group">
+                        <div class="absolute -right-10 -top-10 w-40 h-40 bg-indigo-500/10 blur-[50px] rounded-full group-hover:bg-indigo-500/20 transition"></div>
+                        <div class="mb-8 w-16 h-16 rounded-2xl bg-indigo-500/20 flex items-center justify-center">
+                            <i data-lucide="briefcase" class="w-8 h-8 text-indigo-400"></i>
+                        </div>
+                        <h3 class="text-3xl font-black text-white uppercase tracking-tight mb-4">Servizi, Commercio & BPO</h3>
+                        <p class="text-slate-400 text-base font-light mb-8 flex-grow">
+                            Efficienza operativa per agenzie e retail. Lean AI, ottimizzazione vendite, CRO data-driven e Corporate Gamification.
+                        </p>
+                        <div class="flex items-center gap-3 text-indigo-400 font-bold text-sm uppercase tracking-widest mt-auto">
+                            Esplora Moduli <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-2 transition"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- PORTAL 3: PA & SANITÀ -->
+                <a href="./pa/index.html" class="block">
+                    <div class="card-glass cluster-card card-pa p-12 rounded-[3rem] h-full flex flex-col relative overflow-hidden group">
+                        <div class="absolute -right-10 -top-10 w-40 h-40 bg-blue-500/10 blur-[50px] rounded-full group-hover:bg-blue-500/20 transition"></div>
+                        <div class="mb-8 w-16 h-16 rounded-2xl bg-blue-500/20 flex items-center justify-center">
+                            <i data-lucide="landmark" class="w-8 h-8 text-blue-400"></i>
+                        </div>
+                        <h3 class="text-3xl font-black text-white uppercase tracking-tight mb-4">Pubblica Amministrazione & Sanità</h3>
+                        <p class="text-slate-400 text-base font-light mb-8 flex-grow">
+                            Generazione di Valore Pubblico. Transizione digitale, Project Management IT, GDPR, Open Data e Urban Digital Twins.
+                        </p>
+                        <div class="flex items-center gap-3 text-blue-400 font-bold text-sm uppercase tracking-widest mt-auto">
+                            Esplora Moduli <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-2 transition"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- PORTAL 4: INDUSTRIA -->
+                <a href="./industria/index.html" class="block">
+                    <div class="card-glass cluster-card card-industria p-12 rounded-[3rem] h-full flex flex-col relative overflow-hidden group">
+                        <div class="absolute -right-10 -top-10 w-40 h-40 bg-amber-500/10 blur-[50px] rounded-full group-hover:bg-amber-500/20 transition"></div>
+                        <div class="mb-8 w-16 h-16 rounded-2xl bg-amber-500/20 flex items-center justify-center">
+                            <i data-lucide="factory" class="w-8 h-8 text-amber-400"></i>
+                        </div>
+                        <h3 class="text-3xl font-black text-white uppercase tracking-tight mb-4">Manifatturiero & Industria 4.0</h3>
+                        <p class="text-slate-400 text-base font-light mb-8 flex-grow">
+                            Internazionalizzazione e ottimizzazione. Social Export, Paperless Officina, VR Training, Cyber Industriale e IoT.
+                        </p>
+                        <div class="flex items-center gap-3 text-amber-400 font-bold text-sm uppercase tracking-widest mt-auto">
+                            Esplora Moduli <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-2 transition"></i>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-24 border-t border-white/10 px-6 bg-slate-950">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-20">
+            <div>
+                <img src="https://www.itstechtalentfactory.it/wp-content/uploads/2024/10/ITS-Academy-Tech-Talent-Factory.png" alt="Logo TTF" class="h-14 w-auto mb-10 opacity-60 grayscale hover:grayscale-0 transition duration-300" />
+                <p class="text-slate-600 text-sm max-w-sm leading-relaxed font-medium">
+                    © 2026 Fondazione ITS TechTalentFactory.<br />
+                    Catalizzatori di Crescita Digitale. Sviluppiamo il know-how che guida l'innovazione delle imprese italiane.
+                </p>
+            </div>
+            <div class="flex flex-wrap gap-20">
+                <div class="flex flex-col gap-6">
+                    <span class="text-xs font-black text-white uppercase tracking-[0.3em]">Network</span>
+                    <a href="https://www.itstechtalentfactory.it" target="_blank" class="text-slate-500 hover:text-white text-sm font-semibold transition">Accademia ITS</a>
+                    <a href="#" class="text-slate-500 hover:text-white text-sm font-semibold transition">Diventa Partner Fondatore</a>
+                    <a href="#" class="text-slate-500 hover:text-white text-sm font-semibold transition">Agevolazioni Finanziarie</a>
+                </div>
+                <div class="flex flex-col gap-8">
+                    <span class="text-xs font-black text-white uppercase tracking-[0.3em]">Social Connect</span>
+                    <div class="flex gap-8">
+                        <a href="https://www.linkedin.com/company/its-tech-talent-factory/" target="_blank" class="text-slate-500 hover:text-white transition transform hover:scale-110"><i data-lucide="linkedin" class="w-7 h-7"></i></a>
+                        <a href="https://www.itstechtalentfactory.it" target="_blank" class="text-slate-500 hover:text-white transition transform hover:scale-110"><i data-lucide="globe" class="w-7 h-7"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
