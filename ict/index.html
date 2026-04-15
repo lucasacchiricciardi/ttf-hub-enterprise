@@ -20,7 +20,9 @@
                         sky: { 400: '#38bdf8', 500: '#0ea5e9', 600: '#0284c7' },
                         emerald: { 400: '#34d399', 500: '#10b981', 600: '#059669' },
                         indigo: { 400: '#818cf8', 500: '#6366f1', 600: '#4f46e5' },
-                        orange: { 400: '#fb923c', 500: '#f97316', 600: '#ea580c' }
+                        orange: { 400: '#fb923c', 500: '#f97316', 600: '#ea580c' },
+                        teal: { 400: '#2dd4bf', 500: '#14b8a6', 600: '#0d9488' },
+                        rose: { 400: '#fb7185', 500: '#f43f5e', 600: '#e11d48' }
                     }
                 }
             }
@@ -85,7 +87,7 @@
                 UPSKILLING PER <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-indigo-500 uppercase">System Integrator</span>.
             </h1>
             <p class="text-xl md:text-2xl text-slate-400 mb-14 leading-relaxed max-w-2xl mx-auto font-light">
-                Trasferiamo l'expertise tecnica dei partner ITS ai vostri team. Corsi executive per scalare l'innovazione e blindare la delivery.
+                Trasferiamo l'expertise tecnica dei partner ITS ai vostri team. Corsi executive per scalare l'innovazione, dai Cloud Architect agli Spatial Computing Developer.
             </p>
             <div class="flex justify-center">
                 <a href="#catalogo" class="bg-white text-slate-900 px-12 py-5 rounded-2xl font-black flex items-center gap-4 hover:bg-sky-400 transition shadow-2xl hover:scale-105 active:scale-95 text-sm uppercase tracking-wider">
@@ -110,7 +112,7 @@
                     <i data-lucide="shield-alert" class="w-7 h-7 text-emerald-500"></i>
                 </div>
                 <h3 class="text-xl font-bold mb-4 uppercase tracking-tight text-white">Laboratorio Pratico</h3>
-                <p class="text-slate-500 text-sm leading-relaxed font-medium">Zero slide fuffa. Laboratori intensivi su stack reali: Docker, K8s, Python e AI Agents.</p>
+                <p class="text-slate-500 text-sm leading-relaxed font-medium">Zero slide fuffa. Laboratori intensivi su stack reali: K8s, Python, AI Agents e Unreal Engine.</p>
             </div>
             <div class="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-indigo-500/50 transition duration-500 group">
                 <div class="w-14 h-14 bg-indigo-500/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-indigo-500/20 transition">
@@ -127,17 +129,17 @@
         <div class="max-w-7xl mx-auto">
             <div class="mb-24">
                 <h2 class="text-4xl md:text-7xl font-black mb-6 uppercase tracking-tighter">Catalogo <span class="text-sky-400">Expert-Led</span></h2>
-                <p class="text-slate-400 text-xl font-light">Percorsi intensivi (40-60h) derivati dalle competenze dei docenti partner di TTF.</p>
+                <p class="text-slate-400 text-xl font-light">Percorsi intensivi (40-80h) derivati dalle competenze dei docenti partner di TTF.</p>
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Cambiato in grid-cols-3 per accomodare 6 card perfettamente in 2 righe -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
                 <!-- Course 1: AI-RAG -->
                 <div class="bg-white/5 backdrop-blur-md p-10 rounded-[3rem] border-t-4 border-t-sky-500 border border-white/10 flex flex-col relative group transition-all duration-500 hover:-translate-y-3 hover:bg-white/[0.08] shadow-2xl">
                     <button onclick="openCourseModal('AI-RAG')" class="absolute top-8 right-8 p-3 rounded-full bg-white/5 text-slate-500 hover:text-white hover:bg-sky-600 transition-all opacity-30 group-hover:opacity-100 z-20 focus:outline-none" title="Dettagli Corso">
                         <i data-lucide="info" class="w-5 h-5"></i>
                     </button>
-                    <!-- FIX SVG STRETCHING: dimensioni fisse sul contenitore e shrink-0 -->
                     <div class="mb-10 w-20 h-20 rounded-3xl bg-slate-950/80 shadow-inner flex items-center justify-center shrink-0">
                         <i data-lucide="brain-circuit" class="w-10 h-10 text-sky-400"></i>
                     </div>
@@ -194,6 +196,38 @@
                     <div class="mt-auto pt-8 border-t border-white/5">
                         <div class="text-[10px] font-black text-slate-600 uppercase tracking-[0.3em] mb-6">Expertise: Senior FullStack</div>
                         <button onclick="openContactModal('DevSecOps')" class="w-full py-4 rounded-2xl text-xs font-black uppercase tracking-[0.1em] transition-all duration-300 shadow-xl bg-white/5 border border-white/10 hover:bg-orange-600 hover:text-white active:scale-95 focus:outline-none">Richiedi Scheda</button>
+                    </div>
+                </div>
+
+                <!-- Course 5: Spatial Computing & Digital Twins (NEW) -->
+                <div class="bg-white/5 backdrop-blur-md p-10 rounded-[3rem] border-t-4 border-t-teal-500 border border-white/10 flex flex-col relative group transition-all duration-500 hover:-translate-y-3 hover:bg-white/[0.08] shadow-2xl">
+                    <button onclick="openCourseModal('Spatial-Computing')" class="absolute top-8 right-8 p-3 rounded-full bg-white/5 text-slate-500 hover:text-white hover:bg-teal-600 transition-all opacity-30 group-hover:opacity-100 z-20 focus:outline-none" title="Dettagli Corso">
+                        <i data-lucide="info" class="w-5 h-5"></i>
+                    </button>
+                    <div class="mb-10 w-20 h-20 rounded-3xl bg-slate-950/80 shadow-inner flex items-center justify-center shrink-0">
+                        <i data-lucide="box" class="w-10 h-10 text-teal-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-black mb-4 text-white leading-tight uppercase tracking-tight">Spatial Computing & Digital Twins</h3>
+                    <p class="text-slate-500 text-sm mb-10 flex-grow leading-relaxed font-medium">Progettazione in Unity e Unreal Engine per simulatori, VR/AR aziendale e interfacce 3D di nuova generazione.</p>
+                    <div class="mt-auto pt-8 border-t border-white/5">
+                        <div class="text-[10px] font-black text-slate-600 uppercase tracking-[0.3em] mb-6">Expertise: Technical Artist & Game Dev</div>
+                        <button onclick="openContactModal('Spatial-Computing')" class="w-full py-4 rounded-2xl text-xs font-black uppercase tracking-[0.1em] transition-all duration-300 shadow-xl bg-white/5 border border-white/10 hover:bg-teal-600 hover:text-white active:scale-95 focus:outline-none">Richiedi Scheda</button>
+                    </div>
+                </div>
+
+                <!-- Course 6: Real-Time AI (NEW) -->
+                <div class="bg-white/5 backdrop-blur-md p-10 rounded-[3rem] border-t-4 border-t-rose-500 border border-white/10 flex flex-col relative group transition-all duration-500 hover:-translate-y-3 hover:bg-white/[0.08] shadow-2xl">
+                    <button onclick="openCourseModal('RealTime-AI')" class="absolute top-8 right-8 p-3 rounded-full bg-white/5 text-slate-500 hover:text-white hover:bg-rose-600 transition-all opacity-30 group-hover:opacity-100 z-20 focus:outline-none" title="Dettagli Corso">
+                        <i data-lucide="info" class="w-5 h-5"></i>
+                    </button>
+                    <div class="mb-10 w-20 h-20 rounded-3xl bg-slate-950/80 shadow-inner flex items-center justify-center shrink-0">
+                        <i data-lucide="cpu" class="w-10 h-10 text-rose-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-black mb-4 text-white leading-tight uppercase tracking-tight">Real-Time AI & High Performance</h3>
+                    <p class="text-slate-500 text-sm mb-10 flex-grow leading-relaxed font-medium">Sviluppo C++ estremo, reti neurali applicate in tempo reale, Q-Learning e ottimizzazione hardware-level.</p>
+                    <div class="mt-auto pt-8 border-t border-white/5">
+                        <div class="text-[10px] font-black text-slate-600 uppercase tracking-[0.3em] mb-6">Expertise: AI Game Programmer</div>
+                        <button onclick="openContactModal('RealTime-AI')" class="w-full py-4 rounded-2xl text-xs font-black uppercase tracking-[0.1em] transition-all duration-300 shadow-xl bg-white/5 border border-white/10 hover:bg-rose-600 hover:text-white active:scale-95 focus:outline-none">Richiedi Scheda</button>
                     </div>
                 </div>
 
@@ -286,6 +320,8 @@
                             <option value="Infrastructure Hardening">Infrastructure Hardening</option>
                             <option value="Data Storytelling & BI">Data Storytelling & BI</option>
                             <option value="DevSecOps & CI/CD">DevSecOps & CI/CD</option>
+                            <option value="Spatial Computing & Digital Twins">Spatial Computing & Digital Twins</option>
+                            <option value="Real-Time AI & High Performance">Real-Time AI & High Performance</option>
                         </select>
                         <textarea id="f-problema" placeholder="Descrivi il collo di bottiglia che il team deve risolvere..." class="w-full bg-white/5 border border-white/10 p-6 rounded-2xl focus:border-sky-500 outline-none transition h-44 text-sm font-bold text-white"></textarea>
                     </div>
@@ -344,7 +380,6 @@
             
             <!-- Left Side -->
             <div id="cm-left" class="md:w-5/12 p-16 flex flex-col items-center justify-center text-center border-b md:border-b-0 md:border-r border-white/5">
-                <!-- FIX SVG STRETCHING IN MODAL: contenitore a dimensioni fisse e icona con dimensioni fisse -->
                 <div class="mb-8 w-32 h-32 rounded-[3rem] bg-slate-950/80 shadow-2xl flex items-center justify-center shrink-0" id="cm-icon-container">
                     <!-- L'icona verrà iniettata qui tramite JS -->
                 </div>
@@ -438,6 +473,32 @@
                     'Cloud Deploy Strategy (Azure/AWS)'
                 ],
                 takeaway: 'Accelerare la delivery riducendo i bug in produzione del 40% tramite flussi di lavoro automatizzati e sicuri.'
+            },
+            'Spatial-Computing': {
+                title: 'Spatial Computing & Digital Twins',
+                icon: 'box',
+                colorClasses: { bg: 'bg-teal-600/20', text: 'text-teal-400', dot: 'bg-teal-500', lightBg: 'bg-teal-500/5', lightBorder: 'border-teal-500/20' },
+                topics: [
+                    'Sviluppo avanzato in Unreal Engine 5, Unity e C++',
+                    'Progettazione di Digital Twins e asset 3D (Maya, Blender)',
+                    'Sviluppo interfacce in VR/AR (Spatial Computing)',
+                    'Ottimizzazione del rendering (Ray Tracing, VFX Niagara)',
+                    'Integrazione API esterne in ambienti 3D real-time'
+                ],
+                takeaway: 'Portare l\'azienda nell\'era dello Spatial Computing, creando simulazioni 3D interattive e Digital Twins che riducono i costi di training e prototipazione fisica del 60%.'
+            },
+            'RealTime-AI': {
+                title: 'Real-Time AI & High Performance',
+                icon: 'cpu',
+                colorClasses: { bg: 'bg-rose-600/20', text: 'text-rose-400', dot: 'bg-rose-500', lightBg: 'bg-rose-500/5', lightBorder: 'border-rose-500/20' },
+                topics: [
+                    'Programmazione C++ ad altissime prestazioni',
+                    'Algoritmi Genetici e Q-Learning applicati ad agenti software',
+                    'Integrazione di Neural Networks in ambienti Real-Time',
+                    'Sviluppo backend scalabile per interazioni e calcolo multi-utente',
+                    'Mobile Optimization e gestione critica delle risorse hardware'
+                ],
+                takeaway: 'Sviluppare architetture software ultra-ottimizzate capaci di prendere decisioni in frazioni di secondo, massimizzando le performance su dispositivi con risorse limitate.'
             }
         };
 
@@ -565,8 +626,7 @@
             document.getElementById('cm-title').innerText = course.title;
             document.getElementById('cm-takeaway').innerText = `"${course.takeaway}"`;
 
-            // INIEZIONE DELL'ICONA CON FIX ANTI-STRETCH:
-            // Assicuriamo che l'elemento <i> abbia dimensioni forzate (w-16 h-16) per l'interno del modale
+            // INIEZIONE DELL'ICONA CON FIX ANTI-STRETCH
             document.getElementById('cm-icon-container').innerHTML = `<i data-lucide="${course.icon}" class="w-16 h-16 ${course.colorClasses.text} shrink-0"></i>`;
 
             // Inietta l'elenco dei topic formativi
