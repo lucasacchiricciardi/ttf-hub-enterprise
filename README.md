@@ -45,8 +45,15 @@ Questo è un sito web statico che non richiede installazione complessa.
 
 1. **Locale**: Aprire `index.html` direttamente in un browser web
 2. **Server Web**: Copiare i file su qualsiasi server web (Apache, Nginx, etc.)
-3. **GitHub Pages**: Caricare il repository su GitHub e abilitare Pages
+3. **GitHub Pages**: 
+   - Caricare il repository su GitHub
+   - Andare su Settings > Pages
+   - Selezionare "Deploy from a branch" e scegliere il branch `main` con cartella `/(root)`
+   - Il workflow in `.github/workflows/deploy.yml` gestirà il deploy automatico
 4. **Vercel/Netlify**: Deploy automatico tramite integrazione Git
+
+### Nota per GitHub Pages:
+Il file `.nojekyll` nella root impedisce a GitHub di processare il sito come progetto Jekyll, consentendo l'uso di Tailwind CSS e altre librerie esterne.
 
 ### Navigazione:
 - Dalla homepage, esplorare i diversi settori industry
@@ -55,7 +62,7 @@ Questo è un sito web statico che non richiede installazione complessa.
 
 ## Licenza
 
-© 2026 Luca Sacchi Ricciardi. Tutti i diritti riservati.
+© 2026 Fondazione ITS TechTalentFactory. Tutti i diritti riservati.
 
 È vietata la riproduzione, la distribuzione, la modifica o l'utilizzo commerciale di qualsiasi parte di questo progetto senza previa autorizzazione scritta della Fondazione ITS TechTalentFactory.
 
