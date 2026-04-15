@@ -1,6 +1,8 @@
-# TTF Enterprise Hub
+## Demo Live
 
-## Descrizione
+[![View Demo](https://img.shields.io/badge/View%20Demo-🌐-blue)](https://lucasacchiricciardi.github.io/ttf-hub-enterprise/)
+
+Puoi visualizzare la demo live del progetto al seguente link: [https://lucasacchiricciardi.github.io/ttf-hub-enterprise/](https://lucasacchiricciardi.github.io/ttf-hub-enterprise/)
 
 TTF Enterprise Hub è il portale dedicato all'offerta formativa enterprise di Fondazione ITS TechTalentFactory. Questo progetto rappresenta un'iniziativa strategica di upskilling B2B che trasforma il know-how formativo della Fondazione in impatto concreto per le imprese italiane.
 
