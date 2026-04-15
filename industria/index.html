@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TTF Enterprise - Innovazione Digitale PA & Sanità</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        blue: { 400: '#60a5fa', 500: '#3b82f6', 600: '#2563eb' },
+                        cyan: { 400: '#22d3ee', 500: '#06b6d4', 600: '#0891b2' },
+                        indigo: { 400: '#818cf8', 500: '#6366f1', 600: '#4f46e5' },
+                        teal: { 400: '#2dd4bf', 500: '#14b8a6', 600: '#0d9488' }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+        }
+        .card-glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .modal-overlay {
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        /* Utility classes for steps */
+        .step-content { display: none; opacity: 0; transition: opacity 0.5s ease-in-out; }
+        .step-content.active { display: block; opacity: 1; }
+        /* Smooth modal transitions */
+        .modal-container { opacity: 0; visibility: hidden; transition: all 0.3s ease-in-out; }
+        .modal-container.show { opacity: 1; visibility: visible; }
+        .modal-content { transform: translateY(20px) scale(0.95); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .modal-container.show .modal-content { transform: translateY(0) scale(1); }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-200 min-h-screen font-sans selection:bg-blue-500/30 overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-40 py-4 px-6 border-b border-white/10 bg-slate-950/80 backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="https://www.itstechtalentfactory.it" target="_blank" rel="noreferrer" class="flex items-center gap-4 group cursor-pointer">
+                <img src="https://www.itstechtalentfactory.it/wp-content/uploads/2024/10/ITS-Academy-Tech-Talent-Factory.png" alt="Logo TTF" class="h-10 w-auto group-hover:brightness-125 transition duration-300" />
+                <div class="hidden sm:block h-6 w-px bg-white/20"></div>
+                <span class="font-bold text-lg hidden sm:inline uppercase tracking-tighter">Public <span class="text-blue-400">Innovation</span></span>
+            </a>
+            <div class="hidden md:flex gap-8 text-xs font-black uppercase tracking-widest">
+                <a href="#vision" class="hover:text-blue-400 transition">Semplificazione</a>
+                <a href="#catalogo" class="hover:text-blue-400 transition">Corsi per Enti</a>
+                <a href="#metodo" class="hover:text-blue-400 transition">Metodo TTF</a>
+            </div>
+            <button onclick="openContactModal()" class="bg-blue-600 hover:bg-blue-500 text-white px-8 py-2.5 rounded-full text-xs font-black uppercase tracking-widest transition-all shadow-lg shadow-blue-600/20 hover:scale-105 active:scale-95">
+                Contattaci
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="vision" class="pt-52 pb-36 px-6 relative overflow-hidden bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950">
+        <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none" style="background-image: url('https://www.transparenttextures.com/patterns/cubes.png');"></div>
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <div class="inline-flex items-center gap-2 bg-blue-500/10 text-blue-400 px-5 py-2 rounded-full text-[10px] font-black mb-10 border border-blue-500/20 uppercase tracking-[0.2em] animate-pulse">
+                <i data-lucide="building" class="w-3.5 h-3.5"></i> Formazione per il Valore Pubblico
+            </div>
+            <h1 class="text-6xl md:text-9xl font-black mb-10 tracking-tighter text-white leading-[0.85]">
+                L'UPSKILLING CHE <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 uppercase">Snellisce la PA</span>.
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-400 mb-14 leading-relaxed max-w-2xl mx-auto font-light">
+                Trasferiamo le competenze dei nostri esperti IT direttamente ai dipendenti pubblici. Meno teoria accademica, più strumenti pratici per la transizione digitale.
+            </p>
+            <div class="flex justify-center">
+                <a href="#catalogo" class="bg-white text-slate-900 px-12 py-5 rounded-2xl font-black flex items-center gap-4 hover:bg-blue-400 transition shadow-2xl hover:scale-105 active:scale-95 text-sm uppercase tracking-wider">
+                    Scopri l'Offerta <i data-lucide="arrow-down" class="w-5 h-5"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Core Values / Pain Points -->
+    <section class="py-24 px-6 bg-slate-950 border-y border-white/5">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-16">
+            <div class="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-blue-500/50 transition duration-500 group">
+                <div class="w-14 h-14 bg-blue-500/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-blue-500/20 transition">
+                    <i data-lucide="file-text" class="w-7 h-7 text-blue-500"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4 uppercase tracking-tight text-white">Burocrazia Digitale</h3>
+                <p class="text-slate-500 text-sm leading-relaxed font-medium">Difficoltà nel gestire workflow complessi tra PEC, firme digitali e conservazione a norma. Insegniamo a snellire i processi.</p>
+            </div>
+            <div class="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-cyan-500/50 transition duration-500 group">
+                <div class="w-14 h-14 bg-cyan-500/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-cyan-500/20 transition">
+                    <i data-lucide="users" class="w-7 h-7 text-cyan-500"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4 uppercase tracking-tight text-white">Gestione Fornitori IT</h3>
+                <p class="text-slate-500 text-sm leading-relaxed font-medium">Manca la capacità di tradurre i bisogni dei cittadini in requisiti tecnici chiari per i fornitori IT, causando sprechi di budget.</p>
+            </div>
+            <div class="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-teal-500/50 transition duration-500 group">
+                <div class="w-14 h-14 bg-teal-500/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-teal-500/20 transition">
+                    <i data-lucide="shield-check" class="w-7 h-7 text-teal-500"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4 uppercase tracking-tight text-white">Compliance e Dati</h3>
+                <p class="text-slate-500 text-sm leading-relaxed font-medium">Gestione critica dei dati sensibili e necessità di adeguamento continuo al GDPR per prevenire violazioni senza bloccare l'operatività.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catalogue Section -->
+    <section id="catalogo" class="py-32 px-6 bg-slate-900/30">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-24">
+                <h2 class="text-4xl md:text-7xl font-black mb-6 uppercase tracking-tighter">Corsi <span class="text-blue-400">Expert-Led</span></h2>
+                <p class="text-slate-400 text-xl font-light">Percorsi intensivi (40-60h) estratti dalle competenze IT dei nostri docenti ITS, tarati per la PA.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <!-- Course 1: PM per la PA -->
+                <div class="bg-white/5 backdrop-blur-md p-10 rounded-[3rem] border-t-4 border-t-blue-500 border border-white/10 flex flex-col relative group transition-all duration-500 hover:-translate-y-3 hover:bg-white/[0.08] shadow-2xl">
+                    <button onclick="openCourseModal('PM-PA')" class="absolute top-8 right-8 p-3 rounded-full bg-white/5 text-slate-500 hover:text-white hover:bg-blue-600 transition-all opacity-30 group-hover:opacity-100 z-20 focus:outline-none" title="Dettagli Corso">
+                        <i data-lucide="info" class="w-5 h-5"></i>
+                    </button>
+                    <!-- FIX SVG: w-20 h-20 shrink-0 per evitare stretching, icona fissa w-10 h-10 -->
+                    <div class="mb-10 w-20 h-20 rounded-3xl bg-slate-950/80 shadow-inner flex items-center justify-center shrink-0">
+                        <i data-lucide="layout-template" class="w-10 h-10 text-blue-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-black mb-4 text-white leading-tight uppercase tracking-tight">IT Project Management per PA</h3>
+                    <p class="text-slate-500 text-sm mb-10 flex-grow leading-relaxed font-medium">Come tradurre le esigenze dell'Ente in requisiti tecnici chiari per gestire i fornitori IT senza sprechi.</p>
+                    <div class="mt-auto pt-8 border-t border-white/5">
+                        <div class="text-[10px] font-black text-slate-600 uppercase tracking-[0.3em] mb-6">Expertise: Agile Coach</div>
+                        <button onclick="openContactModal('PM-PA')" class="w-full py-4 rounded-2xl text-xs font-black uppercase tracking-[0.1em] transition-all duration-300 shadow-xl bg-white/5 border border-white/10 hover:bg-blue-600 hover:text-white active:scale-95 focus:outline-none">Richiedi Scheda</button>
+                    </div>
+                </div>
+
+                <!-- Course 2: Cyber & GDPR -->
+                <div class="bg-white/5 backdrop-blur-md p-10 rounded-[3rem] border-t-4 border-t-cyan-500 border border-white/10 flex flex-col relative group transition-all duration-500 hover:-translate-y-3 hover:bg-white/[0.08] shadow-2xl">
+                    <button onclick="openCourseModal('Cyber-GDPR')" class="absolute top-8 right-8 p-3 rounded-full bg-white/5 text-slate-500 hover:text-white hover:bg-cyan-600 transition-all opacity-30 group-hover:opacity-100 z-20 focus:outline-none" title="Dettagli Corso">
+                        <i data-lucide="info" class="w-5 h-5"></i>
+                    </button>
+                    <div class="mb-10 w-20 h-20 rounded-3xl bg-slate-950/80 shadow-inner flex items-center justify-center shrink-0">
+                        <i data-lucide="shield" class="w-10 h-10 text-cyan-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-black mb-4 text-white leading-tight uppercase tracking-tight">Cyber Security & GDPR Operativo</h3>
+                    <p class="text-slate-500 text-sm mb-10 flex-grow leading-relaxed font-medium">Protezione dei dati dei cittadini, adeguamento ISO 27001 e risposta agli incidenti informatici (Data Breach).</p>
+                    <div class="mt-auto pt-8 border-t border-white/5">
+                        <div class="text-[10px] font-black text-slate-600 uppercase tracking-[0.3em] mb-6">Expertise: Cyber Specialist</div>
+                        <button onclick="openContactModal('Cyber-GDPR')" class="w-full py-4 rounded-2xl text-xs font-black uppercase tracking-[0.1em] transition-all duration-300 shadow-xl bg-white/5 border border-white/10 hover:bg-cyan-600 hover:text-white active:scale-95 focus:outline-none">Richiedi Scheda</button>
+                    </div>
+                </div>
+
+                <!-- Course 3: Data Management -->
+                <div class="bg-white/5 backdrop-blur-md p-10 rounded-[3rem] border-t-4 border-t-indigo-500 border border-white/10 flex flex-col relative group transition-all duration-500 hover:-translate-y-3 hover:bg-white/[0.08] shadow-2xl">
+                    <button onclick="openCourseModal('Data-Gov')" class="absolute top-8 right-8 p-3 rounded-full bg-white/5 text-slate-500 hover:text-white hover:bg-indigo-600 transition-all opacity-30 group-hover:opacity-100 z-20 focus:outline-none" title="Dettagli Corso">
+                        <i data-lucide="info" class="w-5 h-5"></i>
+                    </button>
+                    <div class="mb-10 w-20 h-20 rounded-3xl bg-slate-950/80 shadow-inner flex items-center justify-center shrink-0">
+                        <i data-lucide="pie-chart" class="w-10 h-10 text-indigo-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-black mb-4 text-white leading-tight uppercase tracking-tight">Data Management & Open Data</h3>
+                    <p class="text-slate-500 text-sm mb-10 flex-grow leading-relaxed font-medium">Uso dei dati per decisioni dirigenziali. Dalla gestione dei database alla creazione di cruscotti per la trasparenza.</p>
+                    <div class="mt-auto pt-8 border-t border-white/5">
+                        <div class="text-[10px] font-black text-slate-600 uppercase tracking-[0.3em] mb-6">Expertise: Data Engineer</div>
+                        <button onclick="openContactModal('Data-Gov')" class="w-full py-4 rounded-2xl text-xs font-black uppercase tracking-[0.1em] transition-all duration-300 shadow-xl bg-white/5 border border-white/10 hover:bg-indigo-600 hover:text-white active:scale-95 focus:outline-none">Richiedi Scheda</button>
+                    </div>
+                </div>
+
+                <!-- Course 4: Digital Workspace -->
+                <div class="bg-white/5 backdrop-blur-md p-10 rounded-[3rem] border-t-4 border-t-teal-500 border border-white/10 flex flex-col relative group transition-all duration-500 hover:-translate-y-3 hover:bg-white/[0.08] shadow-2xl">
+                    <button onclick="openCourseModal('Workspace')" class="absolute top-8 right-8 p-3 rounded-full bg-white/5 text-slate-500 hover:text-white hover:bg-teal-600 transition-all opacity-30 group-hover:opacity-100 z-20 focus:outline-none" title="Dettagli Corso">
+                        <i data-lucide="info" class="w-5 h-5"></i>
+                    </button>
+                    <div class="mb-10 w-20 h-20 rounded-3xl bg-slate-950/80 shadow-inner flex items-center justify-center shrink-0">
+                        <i data-lucide="cloud" class="w-10 h-10 text-teal-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-black mb-4 text-white leading-tight uppercase tracking-tight">Cloud Workspace & Servizi Digitali</h3>
+                    <p class="text-slate-500 text-sm mb-10 flex-grow leading-relaxed font-medium">Ottimizzare il lavoro ibrido con M365/Google Workspace, identità digitale (SPID/CIE) e gestione documentale.</p>
+                    <div class="mt-auto pt-8 border-t border-white/5">
+                        <div class="text-[10px] font-black text-slate-600 uppercase tracking-[0.3em] mb-6">Expertise: Cloud Architect</div>
+                        <button onclick="openContactModal('Workspace')" class="w-full py-4 rounded-2xl text-xs font-black uppercase tracking-[0.1em] transition-all duration-300 shadow-xl bg-white/5 border border-white/10 hover:bg-teal-600 hover:text-white active:scale-95 focus:outline-none">Richiedi Scheda</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Method Section -->
+    <section id="metodo" class="py-40 px-6 bg-slate-950">
+        <div class="max-w-4xl mx-auto bg-white/5 p-20 rounded-[4rem] border border-blue-500/20 text-center relative overflow-hidden shadow-2xl">
+            <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-64 h-64 bg-blue-500/10 blur-[120px] rounded-full"></div>
+            <h2 class="text-4xl md:text-5xl font-black mb-10 uppercase tracking-tighter text-white">Priorità all'Esecuzione</h2>
+            <p class="text-slate-400 mb-14 leading-relaxed text-xl font-light">
+                Aiutiamo i dirigenti e i RUP a scegliere i progetti formativi che garantiscono il massimo impatto sui cittadini e la massima aderenza alle normative (es. PNRR).
+            </p>
+            <div class="flex justify-center flex-wrap gap-12 text-blue-400 font-mono text-3xl font-black uppercase tracking-widest italic opacity-80">
+                <span>Impatto</span> 
+                <span class="text-white">+</span>
+                <span>Fattibilità</span> 
+                <span class="text-white">+</span>
+                <span>Compliance</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-24 border-t border-white/10 px-6 bg-slate-950">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-20">
+            <div>
+                <img src="https://www.itstechtalentfactory.it/wp-content/uploads/2024/10/ITS-Academy-Tech-Talent-Factory.png" alt="Logo TTF" class="h-14 w-auto mb-10 opacity-60 grayscale hover:grayscale-0 transition duration-300" />
+                <p class="text-slate-600 text-sm max-w-sm leading-relaxed font-medium">
+                    © 2026 TechTalentFactory Academy. <br />
+                    Sviluppo Strategico per la Pubblica Amministrazione e Sanità.
+                </p>
+            </div>
+            <div class="flex flex-wrap gap-20">
+                <div class="flex flex-col gap-6">
+                    <span class="text-xs font-black text-white uppercase tracking-[0.3em]">Governance</span>
+                    <a href="https://www.itstechtalentfactory.it" target="_blank" class="text-slate-500 hover:text-blue-400 text-sm font-semibold transition">ITS Academy</a>
+                    <a href="#" class="text-slate-500 hover:text-blue-400 text-sm font-semibold transition">Partner PA & Sanità</a>
+                    <a href="#" class="text-slate-500 hover:text-blue-400 text-sm font-semibold transition">Iniziative PNRR</a>
+                </div>
+                <div class="flex flex-col gap-8">
+                    <span class="text-xs font-black text-white uppercase tracking-[0.3em]">Connect</span>
+                    <div class="flex gap-8">
+                        <a href="#" class="text-slate-500 hover:text-white transition transform hover:scale-110"><i data-lucide="linkedin" class="w-7 h-7"></i></a>
+                        <a href="#" class="text-slate-500 hover:text-white transition transform hover:scale-110"><i data-lucide="globe" class="w-7 h-7"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================== -->
+    <!-- MODAL DI QUALIFICA LEAD (MULTI-STEP)           -->
+    <!-- ============================================== -->
+    <div id="contactModal" class="fixed inset-0 z-[100] flex items-center justify-center p-6 modal-overlay overflow-y-auto modal-container">
+        <div class="bg-slate-900 border border-white/10 p-12 rounded-[3.5rem] max-w-2xl w-full relative shadow-[0_0_80px_rgba(0,0,0,0.8)] my-auto border-t-4 border-t-blue-500 modal-content">
+            <button onclick="closeContactModal()" class="absolute top-10 right-10 text-slate-500 hover:text-white transition focus:outline-none">
+                <i data-lucide="x" class="w-8 h-8"></i>
+            </button>
+            
+            <div class="flex gap-3 mb-16 h-1.5" id="progress-bars">
+                <div class="flex-1 rounded-full transition-all duration-700 bg-blue-600 step-pb" data-step="1"></div>
+                <div class="flex-1 rounded-full transition-all duration-700 bg-white/5 step-pb" data-step="2"></div>
+                <div class="flex-1 rounded-full transition-all duration-700 bg-white/5 step-pb" data-step="3"></div>
+                <div class="flex-1 rounded-full transition-all duration-700 bg-white/5 step-pb" data-step="4"></div>
+            </div>
+
+            <form id="leadForm" class="min-h-[450px]">
+                <!-- Step 1 -->
+                <div class="step-content active" id="step-1">
+                    <h3 class="text-4xl font-black mb-4 uppercase tracking-tighter text-white">Profilazione</h3>
+                    <p class="text-slate-400 mb-10 text-lg font-light">Identifichiamo l'Ente o la struttura sanitaria.</p>
+                    <div class="space-y-6">
+                        <input type="text" id="f-nome" placeholder="Nome e Cognome Referente" class="w-full bg-white/5 border border-white/10 p-6 rounded-2xl focus:border-blue-500 outline-none transition text-sm font-bold text-white">
+                        <input type="text" id="f-azienda" placeholder="Nome Ente / ASST / Comune" class="w-full bg-white/5 border border-white/10 p-6 rounded-2xl focus:border-blue-500 outline-none transition text-sm font-bold text-white">
+                        <input type="text" id="f-ruolo" placeholder="Ruolo (es. Dirigente, RUP, IT Manager)" class="w-full bg-white/5 border border-white/10 p-6 rounded-2xl focus:border-blue-500 outline-none transition text-sm font-bold text-white">
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step-content" id="step-2">
+                    <h3 class="text-4xl font-black mb-4 uppercase tracking-tighter text-white">Sfida di Innovazione</h3>
+                    <p class="text-slate-400 mb-10 text-lg font-light">Qual è l'ostacolo principale all'ammodernamento?</p>
+                    <div class="space-y-6">
+                        <select id="f-area" class="w-full bg-slate-800 border border-white/10 p-6 rounded-2xl focus:border-blue-500 outline-none transition text-sm text-white font-bold">
+                            <option value="">Seleziona Ambito di Intervento</option>
+                            <option value="IT Project Management">Gestione Fornitori e Requisiti IT</option>
+                            <option value="Cyber Security & GDPR">Sicurezza Dati e Compliance GDPR</option>
+                            <option value="Data Management">Gestione Dati & Open Data</option>
+                            <option value="Cloud Workspace">Cloud, Collaboration e Servizi Digitali</option>
+                        </select>
+                        <textarea id="f-problema" placeholder="Descrivi brevemente il bisogno o la criticità del dipartimento..." class="w-full bg-white/5 border border-white/10 p-6 rounded-2xl focus:border-blue-500 outline-none transition h-44 text-sm font-bold text-white"></textarea>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step-content" id="step-3">
+                    <h3 class="text-4xl font-black mb-4 uppercase tracking-tighter text-white">Contesto Operativo</h3>
+                    <p class="text-slate-400 mb-10 text-lg font-light">Inquadriamo le tempistiche e gli obiettivi pubblici.</p>
+                    <div class="space-y-6">
+                        <select id="f-frequenza" class="w-full bg-slate-800 border border-white/10 p-6 rounded-2xl focus:border-blue-500 outline-none transition text-sm text-white font-bold">
+                            <option value="">Priorità dell'intervento</option>
+                            <option value="Alta (Vincoli PNRR o Scadenze Normative)">Alta (Scadenze PNRR o Normative)</option>
+                            <option value="Media (Miglioramento Continuo)">Media (Efficienza Uffici)</option>
+                            <option value="Pianificazione Bilancio Futuro">Pianificazione (Bilancio anno successivo)</option>
+                        </select>
+                        <input type="text" id="f-impatto" placeholder="Obiettivo (es. Ridurre i tempi pratiche, adeguamento AgID)" class="w-full bg-white/5 border border-white/10 p-6 rounded-2xl focus:border-blue-500 outline-none transition text-sm font-bold text-white">
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="step-content" id="step-4">
+                    <h3 class="text-4xl font-black mb-4 uppercase tracking-tighter text-white">Dettagli Formativi</h3>
+                    <p class="text-slate-400 mb-10 text-lg font-light">Parametri per l'erogazione del corso.</p>
+                    <div class="space-y-6">
+                        <input type="number" id="f-persone" placeholder="Stima dipendenti da formare" class="w-full bg-white/5 border border-white/10 p-6 rounded-2xl focus:border-blue-500 outline-none transition text-sm font-bold text-white">
+                        <select id="f-timeline" class="w-full bg-slate-800 border border-white/10 p-6 rounded-2xl focus:border-blue-500 outline-none transition text-sm text-white font-bold">
+                            <option value="">Quando vorreste avviare le lezioni?</option>
+                            <option value="Entro il Trimestre">Entro il Trimestre</option>
+                            <option value="Entro 6 mesi">Entro 6 mesi</option>
+                            <option value="Solo esplorazione per bandi">Fase esplorativa per partecipazione bandi</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+
+            <div class="flex justify-between mt-16">
+                <button id="btnPrev" onclick="prevStep()" class="px-10 py-5 text-slate-500 hover:text-white transition font-black uppercase text-xs tracking-[0.3em] invisible focus:outline-none">
+                    Indietro
+                </button>
+                <button id="btnNext" onclick="nextStep()" class="px-16 py-5 bg-blue-600 rounded-[2rem] font-black hover:bg-blue-500 transition uppercase tracking-widest text-sm shadow-2xl shadow-blue-600/40 flex items-center gap-3 group text-white focus:outline-none">
+                    Continua <i data-lucide="chevron-right" class="w-6 h-6 group-hover:translate-x-2 transition"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- MODAL DETTAGLIO CORSO                          -->
+    <!-- ============================================== -->
+    <div id="courseModal" class="fixed inset-0 z-[110] flex items-center justify-center p-4 modal-overlay modal-container">
+        <div class="bg-slate-900 border border-white/10 max-w-4xl w-full rounded-[4rem] overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.9)] relative flex flex-col md:flex-row h-auto max-h-[90vh] modal-content">
+            <button onclick="closeCourseModal()" class="absolute top-10 right-10 text-slate-500 hover:text-white transition z-20 focus:outline-none">
+                <i data-lucide="x" class="w-8 h-8"></i>
+            </button>
+            
+            <!-- Left Side -->
+            <div id="cm-left" class="md:w-5/12 p-16 flex flex-col items-center justify-center text-center border-b md:border-b-0 md:border-r border-white/5">
+                <div class="mb-8 w-32 h-32 rounded-[3rem] bg-slate-950/80 shadow-2xl flex items-center justify-center shrink-0" id="cm-icon-container">
+                    <!-- Icon inyectata via JS -->
+                </div>
+                <div id="cm-expert-badge" class="text-[10px] font-black uppercase tracking-[0.5em] mb-4">Percorso Enti Locali</div>
+                <h2 id="cm-title" class="text-white text-4xl font-black uppercase tracking-tighter leading-none">Title</h2>
+            </div>
+
+            <!-- Right Side -->
+            <div class="md:w-7/12 p-16 overflow-y-auto">
+                <div class="mb-14">
+                    <h4 class="text-blue-400 text-[10px] font-black uppercase tracking-[0.3em] mb-10 flex items-center gap-4">
+                        <i data-lucide="info" class="w-5 h-5"></i> Programma Didattico
+                    </h4>
+                    <ul id="cm-topics" class="space-y-8">
+                        <!-- Topic inyectati via JS -->
+                    </ul>
+                </div>
+
+                <div id="cm-takeaway-container" class="p-10 rounded-[3rem] border relative shadow-inner">
+                    <div class="absolute top-0 left-12 -translate-y-1/2 bg-slate-900 px-6 text-[10px] font-black uppercase tracking-widest text-white border border-white/10 rounded-full py-1">Valore Pubblico</div>
+                    <h4 class="text-white text-xs font-black uppercase tracking-widest mb-6">Risultato Operativo</h4>
+                    <p id="cm-takeaway" class="text-slate-400 text-xl leading-relaxed italic font-light">
+                        <!-- Takeaway inyectato via JS -->
+                    </p>
+                </div>
+
+                <button onclick="requestFromCourse()" class="mt-14 w-full py-6 bg-white text-slate-900 rounded-[2rem] font-black uppercase tracking-[0.2em] text-xs hover:bg-blue-500 hover:text-white transition-all shadow-2xl active:scale-[0.98] focus:outline-none">
+                    Richiedi Contatto Istituzionale
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Javascript Logic -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            lucide.createIcons();
+        });
+
+        // 1. Dati dei Corsi - CLUSTER 3 (PA & Sanità)
+        const coursesData = {
+            'PM-PA': {
+                title: 'IT Project Management per la PA',
+                icon: 'layout-template',
+                colorClasses: { bg: 'bg-blue-600/20', text: 'text-blue-400', dot: 'bg-blue-500', lightBg: 'bg-blue-500/5', lightBorder: 'border-blue-500/20' },
+                topics: [
+                    'Differenza tra Waterfall ed iterativo (Metodologia AGILE)',
+                    'Valutazione fornitori e Change Management IT',
+                    'Raccolta esigenze dei cittadini e stesura specifiche tecniche',
+                    'Creazione e assegnazione di User Story ai fornitori software',
+                    'Misurazione, valutazione e QA del servizio erogato'
+                ],
+                takeaway: 'Evitare sprechi di budget pubblico colmando il gap tra dirigenti e fornitori IT, assicurando consegne nei tempi e software realmente utili per i cittadini.'
+            },
+            'Cyber-GDPR': {
+                title: 'Cyber Security & GDPR Operativo',
+                icon: 'shield',
+                colorClasses: { bg: 'bg-cyan-600/20', text: 'text-cyan-400', dot: 'bg-cyan-500', lightBg: 'bg-cyan-500/5', lightBorder: 'border-cyan-500/20' },
+                topics: [
+                    'Privacy, GDPR e normative AgID / ACN per la Pubblica Amministrazione',
+                    'Gestione degli accessi, policy aziendali e Data Leakage',
+                    'Procedure di Incident Response e gestione Data Breach',
+                    'Fondamenti di ISO 27001 e audit di sicurezza interna',
+                    'Difesa da attacchi ransomware e phishing (Security Awareness)'
+                ],
+                takeaway: 'Mettere in sicurezza i dati sensibili dei cittadini e garantire la compliance normativa, prevenendo sanzioni e blocchi operativi dei servizi pubblici.'
+            },
+            'Data-Gov': {
+                title: 'Data Management & Open Data',
+                icon: 'pie-chart',
+                colorClasses: { bg: 'bg-indigo-600/20', text: 'text-indigo-400', dot: 'bg-indigo-500', lightBg: 'bg-indigo-500/5', lightBorder: 'border-indigo-500/20' },
+                topics: [
+                    'Fondamenti di database: SQL, strutture dati e logiche di storage',
+                    'Principi per la gestione, condivisione e sicurezza degli Open Data',
+                    'Data Storytelling per la trasparenza e la rendicontazione',
+                    'Realizzazione cruscotti interattivi con MS Excel e Power BI',
+                    'Incrocio dati tra dipartimenti per supportare decisioni dirigenziali'
+                ],
+                takeaway: 'Trasformare archivi di dati frammentati in dashboard chiare e trasparenti, supportando le decisioni della dirigenza e migliorando la comunicazione civica.'
+            },
+            'Workspace': {
+                title: 'Cloud Workspace & Servizi Digitali',
+                icon: 'cloud',
+                colorClasses: { bg: 'bg-teal-600/20', text: 'text-teal-400', dot: 'bg-teal-500', lightBg: 'bg-teal-500/5', lightBorder: 'border-teal-500/20' },
+                topics: [
+                    'Gestione documentale e protocollo informatico (PEC, Firme Digitali)',
+                    'Transizione al Cloud (IaaS/SaaS) e collaboration tool (M365/Google)',
+                    'Sicurezza base per l\'ufficio ibrido e lo smart working',
+                    'Integrazione con piattaforme nazionali (SPID, CIE, PagoPA)',
+                    'Gestione sicura e condivisione file intra-ente'
+                ],
+                takeaway: 'Snellire la burocrazia interna eliminando i processi cartacei e riducendo i tempi di attraversamento delle pratiche amministrative del 50%.'
+            }
+        };
+
+        // 2. Gestione Form Multi-Step
+        let currentStep = 1;
+        const totalSteps = 4;
+
+        function openContactModal(prefillCourse = '') {
+            document.body.style.overflow = 'hidden';
+            document.getElementById('contactModal').classList.add('show');
+            currentStep = 1;
+            
+            if(prefillCourse) {
+                const areaSelect = document.getElementById('f-area');
+                const courseTitle = coursesData[prefillCourse].title;
+                for(let i=0; i<areaSelect.options.length; i++) {
+                    if(areaSelect.options[i].value === courseTitle) {
+                        areaSelect.selectedIndex = i;
+                        break;
+                    }
+                }
+            }
+            updateStepUI();
+        }
+
+        function closeContactModal() {
+            document.body.style.overflow = 'auto';
+            document.getElementById('contactModal').classList.remove('show');
+        }
+
+        function nextStep() {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                updateStepUI();
+            } else {
+                sendMail();
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                updateStepUI();
+            }
+        }
+
+        function updateStepUI() {
+            document.querySelectorAll('.step-content').forEach(el => el.classList.remove('active'));
+            document.getElementById('step-' + currentStep).classList.add('active');
+
+            const pbs = document.querySelectorAll('.step-pb');
+            pbs.forEach((el, idx) => {
+                if (idx < currentStep) {
+                    el.classList.replace('bg-white/5', 'bg-blue-600');
+                } else {
+                    el.classList.replace('bg-blue-600', 'bg-white/5');
+                }
+            });
+
+            const btnPrev = document.getElementById('btnPrev');
+            const btnNext = document.getElementById('btnNext');
+
+            if (currentStep === 1) {
+                btnPrev.classList.add('invisible');
+            } else {
+                btnPrev.classList.remove('invisible');
+            }
+
+            if (currentStep === totalSteps) {
+                btnNext.innerHTML = `Invia Richiesta <i data-lucide="chevron-right" class="w-6 h-6 group-hover:translate-x-2 transition"></i>`;
+            } else {
+                btnNext.innerHTML = `Continua <i data-lucide="chevron-right" class="w-6 h-6 group-hover:translate-x-2 transition"></i>`;
+            }
+            
+            lucide.createIcons();
+        }
+
+        function sendMail() {
+            const nome = document.getElementById('f-nome').value || '[Non Specificato]';
+            const azienda = document.getElementById('f-azienda').value || '[Non Specificata]';
+            const ruolo = document.getElementById('f-ruolo').value || '[Non Specificato]';
+            const area = document.getElementById('f-area').value || '[Non Selezionata]';
+            const problema = document.getElementById('f-problema').value || '[Nessun Dettaglio]';
+            const frequenza = document.getElementById('f-frequenza').value || '[Non Specificato]';
+            const impatto = document.getElementById('f-impatto').value || '[Non Specificato]';
+            const persone = document.getElementById('f-persone').value || '[Non Specificato]';
+            const timeline = document.getElementById('f-timeline').value || '[Non Specificato]';
+
+            const subject = encodeURIComponent(`Richiesta Formazione PA - TTF: ${azienda}`);
+            const body = encodeURIComponent(
+                `Spett.le Direzione TechTalentFactory,\n\nSono ${nome}, in qualità di ${ruolo} presso l'Ente ${azienda}.\n\n` +
+                `Siamo interessati ad approfondire il seguente percorso per la transizione digitale: ${area}\n\n` +
+                `Dettaglio del contesto operativo: ${problema}\n` +
+                `Priorità dell'intervento: ${frequenza}\n` +
+                `Obiettivo Pubblico desiderato: ${impatto}\n\n` +
+                `Personale stimato per il corso: ${persone}\n` +
+                `Timeline di avvio preferita: ${timeline}\n\n` +
+                `Resto in attesa di un vostro cordiale riscontro per fissare un incontro conoscitivo.\n\nSaluti istituzionali.`
+            );
+            window.location.href = `mailto:direzione@itstechtalentfactory.it?subject=${subject}&body=${body}`;
+            closeContactModal();
+        }
+
+        // 3. Gestione Course Detail Modal
+        let activeCourseId = '';
+
+        function openCourseModal(id) {
+            activeCourseId = id;
+            const course = coursesData[id];
+            
+            const leftPanel = document.getElementById('cm-left');
+            const expertBadge = document.getElementById('cm-expert-badge');
+            const takeawayContainer = document.getElementById('cm-takeaway-container');
+            
+            leftPanel.className = `md:w-5/12 p-16 flex flex-col items-center justify-center text-center border-b md:border-b-0 md:border-r border-white/5 ${course.colorClasses.bg}`;
+            expertBadge.className = `text-[10px] font-black uppercase tracking-[0.5em] mb-4 ${course.colorClasses.text}`;
+            takeawayContainer.className = `p-10 rounded-[3rem] border relative shadow-inner ${course.colorClasses.lightBg} ${course.colorClasses.lightBorder}`;
+
+            document.getElementById('cm-title').innerText = course.title;
+            document.getElementById('cm-takeaway').innerText = `"${course.takeaway}"`;
+
+            // INIEZIONE ICONA CON DIMENSIONI FISSE (w-16 h-16 shrink-0)
+            document.getElementById('cm-icon-container').innerHTML = `<i data-lucide="${course.icon}" class="w-16 h-16 ${course.colorClasses.text} shrink-0"></i>`;
+
+            const topicsList = document.getElementById('cm-topics');
+            topicsList.innerHTML = '';
+            course.topics.forEach(topic => {
+                topicsList.innerHTML += `
+                    <li class="flex items-start gap-6 text-slate-300 group">
+                        <div class="mt-2 w-2.5 h-2.5 rounded-full shrink-0 animate-pulse ${course.colorClasses.dot}"></div>
+                        <span class="text-xl font-bold leading-tight group-hover:text-white transition duration-300">${topic}</span>
+                    </li>
+                `;
+            });
+
+            lucide.createIcons();
+
+            document.body.style.overflow = 'hidden';
+            document.getElementById('courseModal').classList.add('show');
+        }
+
+        function closeCourseModal() {
+            document.body.style.overflow = 'auto';
+            document.getElementById('courseModal').classList.remove('show');
+            activeCourseId = '';
+        }
+
+        function requestFromCourse() {
+            closeCourseModal();
+            setTimeout(() => {
+                openContactModal(activeCourseId);
+            }, 300);
+        }
+
+    </script>
+</body>
+</html>

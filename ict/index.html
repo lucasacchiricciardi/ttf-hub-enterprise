@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TTF Enterprise - Upskilling ICT High-Speed</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        sky: { 400: '#38bdf8', 500: '#0ea5e9', 600: '#0284c7' },
+                        emerald: { 400: '#34d399', 500: '#10b981', 600: '#059669' },
+                        indigo: { 400: '#818cf8', 500: '#6366f1', 600: '#4f46e5' },
+                        orange: { 400: '#fb923c', 500: '#f97316', 600: '#ea580c' }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+        .card-glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .modal-overlay {
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        /* Utility classes for steps */
+        .step-content { display: none; opacity: 0; transition: opacity 0.5s ease-in-out; }
+        .step-content.active { display: block; opacity: 1; }
+        /* Smooth modal transitions */
+        .modal-container { opacity: 0; visibility: hidden; transition: all 0.3s ease-in-out; }
+        .modal-container.show { opacity: 1; visibility: visible; }
+        .modal-content { transform: translateY(20px) scale(0.95); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .modal-container.show .modal-content { transform: translateY(0) scale(1); }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-200 min-h-screen font-sans selection:bg-sky-500/30 overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-40 py-4 px-6 border-b border-white/10 bg-slate-950/80 backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="https://www.itstechtalentfactory.it" target="_blank" rel="noreferrer" class="flex items-center gap-4 group cursor-pointer">
+                <img src="https://www.itstechtalentfactory.it/wp-content/uploads/2024/10/ITS-Academy-Tech-Talent-Factory.png" alt="Logo TTF" class="h-10 w-auto group-hover:brightness-125 transition duration-300" />
+                <div class="hidden sm:block h-6 w-px bg-white/20"></div>
+                <span class="font-bold text-lg hidden sm:inline uppercase tracking-tighter">Enterprise <span class="text-sky-400">ICT</span></span>
+            </a>
+            <div class="hidden md:flex gap-8 text-xs font-black uppercase tracking-widest">
+                <a href="#vision" class="hover:text-sky-400 transition">Vision</a>
+                <a href="#catalogo" class="hover:text-sky-400 transition">Catalogo B2B</a>
+                <a href="#metodo" class="hover:text-sky-400 transition">Metodo ICE</a>
+            </div>
+            <button onclick="openContactModal()" class="bg-sky-600 hover:bg-sky-500 text-white px-8 py-2.5 rounded-full text-xs font-black uppercase tracking-widest transition-all shadow-lg shadow-sky-600/20 hover:scale-105 active:scale-95">
+                Contattaci
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="vision" class="pt-52 pb-36 px-6 relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+        <div class="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none" style="background-image: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');"></div>
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <div class="inline-flex items-center gap-2 bg-sky-500/10 text-sky-400 px-5 py-2 rounded-full text-[10px] font-black mb-10 border border-sky-500/20 uppercase tracking-[0.2em] animate-pulse">
+                <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Skills erogate dai top specialist del settore
+            </div>
+            <h1 class="text-6xl md:text-9xl font-black mb-10 tracking-tighter text-white leading-[0.85]">
+                UPSKILLING PER <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-indigo-500 uppercase">System Integrator</span>.
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-400 mb-14 leading-relaxed max-w-2xl mx-auto font-light">
+                Trasferiamo l'expertise tecnica dei partner ITS ai vostri team. Corsi executive per scalare l'innovazione e blindare la delivery.
+            </p>
+            <div class="flex justify-center">
+                <a href="#catalogo" class="bg-white text-slate-900 px-12 py-5 rounded-2xl font-black flex items-center gap-4 hover:bg-sky-400 transition shadow-2xl hover:scale-105 active:scale-95 text-sm uppercase tracking-wider">
+                    Esplora il Catalogo <i data-lucide="arrow-down" class="w-5 h-5"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Core Values -->
+    <section class="py-24 px-6 bg-slate-950 border-y border-white/5">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-16">
+            <div class="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-sky-500/50 transition duration-500 group">
+                <div class="w-14 h-14 bg-sky-500/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-sky-500/20 transition">
+                    <i data-lucide="brain" class="w-7 h-7 text-sky-500"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4 uppercase tracking-tight text-white">Full-Funnel Vision</h3>
+                <p class="text-slate-500 text-sm leading-relaxed font-medium">Insegniamo ai tech leader a vedere il codice come asset di crescita aziendale.</p>
+            </div>
+            <div class="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-emerald-500/50 transition duration-500 group">
+                <div class="w-14 h-14 bg-emerald-500/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-emerald-500/20 transition">
+                    <i data-lucide="shield-alert" class="w-7 h-7 text-emerald-500"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4 uppercase tracking-tight text-white">Laboratorio Pratico</h3>
+                <p class="text-slate-500 text-sm leading-relaxed font-medium">Zero slide fuffa. Laboratori intensivi su stack reali: Docker, K8s, Python e AI Agents.</p>
+            </div>
+            <div class="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-indigo-500/50 transition duration-500 group">
+                <div class="w-14 h-14 bg-indigo-500/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-indigo-500/20 transition">
+                    <i data-lucide="gauge" class="w-7 h-7 text-indigo-500"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4 uppercase tracking-tight text-white">Time-to-Impact</h3>
+                <p class="text-slate-500 text-sm leading-relaxed font-medium">Moduli progettati per un impatto immediato sui processi di delivery e sulla velocità di rilascio.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catalogue Section -->
+    <section id="catalogo" class="py-32 px-6 bg-slate-900/30">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-24">
+                <h2 class="text-4xl md:text-7xl font-black mb-6 uppercase tracking-tighter">Catalogo <span class="text-sky-400">Expert-Led</span></h2>
+                <p class="text-slate-400 text-xl font-light">Percorsi intensivi (40-60h) derivati dalle competenze dei docenti partner di TTF.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <!-- Course 1: AI-RAG -->
+                <div class="bg-white/5 backdrop-blur-md p-10 rounded-[3rem] border-t-4 border-t-sky-500 border border-white/10 flex flex-col relative group transition-all duration-500 hover:-translate-y-3 hover:bg-white/[0.08] shadow-2xl">
+                    <button onclick="openCourseModal('AI-RAG')" class="absolute top-8 right-8 p-3 rounded-full bg-white/5 text-slate-500 hover:text-white hover:bg-sky-600 transition-all opacity-30 group-hover:opacity-100 z-20 focus:outline-none" title="Dettagli Corso">
+                        <i data-lucide="info" class="w-5 h-5"></i>
+                    </button>
+                    <!-- FIX SVG STRETCHING: dimensioni fisse sul contenitore e shrink-0 -->
+                    <div class="mb-10 w-20 h-20 rounded-3xl bg-slate-950/80 shadow-inner flex items-center justify-center shrink-0">
+                        <i data-lucide="brain-circuit" class="w-10 h-10 text-sky-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-black mb-4 text-white leading-tight uppercase tracking-tight">Agentic AI & RAG Mastery</h3>
+                    <p class="text-slate-500 text-sm mb-10 flex-grow leading-relaxed font-medium">Sviluppo di architetture Agentiche e RAG per massimizzare la seniority del technical team.</p>
+                    <div class="mt-auto pt-8 border-t border-white/5">
+                        <div class="text-[10px] font-black text-slate-600 uppercase tracking-[0.3em] mb-6">Expertise: AI Architect</div>
+                        <button onclick="openContactModal('AI-RAG')" class="w-full py-4 rounded-2xl text-xs font-black uppercase tracking-[0.1em] transition-all duration-300 shadow-xl bg-white/5 border border-white/10 hover:bg-sky-600 hover:text-white active:scale-95 focus:outline-none">Richiedi Scheda</button>
+                    </div>
+                </div>
+
+                <!-- Course 2: Hardening -->
+                <div class="bg-white/5 backdrop-blur-md p-10 rounded-[3rem] border-t-4 border-t-emerald-500 border border-white/10 flex flex-col relative group transition-all duration-500 hover:-translate-y-3 hover:bg-white/[0.08] shadow-2xl">
+                    <button onclick="openCourseModal('Hardening')" class="absolute top-8 right-8 p-3 rounded-full bg-white/5 text-slate-500 hover:text-white hover:bg-emerald-600 transition-all opacity-30 group-hover:opacity-100 z-20 focus:outline-none" title="Dettagli Corso">
+                        <i data-lucide="info" class="w-5 h-5"></i>
+                    </button>
+                    <div class="mb-10 w-20 h-20 rounded-3xl bg-slate-950/80 shadow-inner flex items-center justify-center shrink-0">
+                        <i data-lucide="lock" class="w-10 h-10 text-emerald-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-black mb-4 text-white leading-tight uppercase tracking-tight">Infrastructure Hardening</h3>
+                    <p class="text-slate-500 text-sm mb-10 flex-grow leading-relaxed font-medium">Strategie Blue Team per la difesa di ambienti Cloud Native, Docker e Kubernetes.</p>
+                    <div class="mt-auto pt-8 border-t border-white/5">
+                        <div class="text-[10px] font-black text-slate-600 uppercase tracking-[0.3em] mb-6">Expertise: Cyber Specialist</div>
+                        <button onclick="openContactModal('Hardening')" class="w-full py-4 rounded-2xl text-xs font-black uppercase tracking-[0.1em] transition-all duration-300 shadow-xl bg-white/5 border border-white/10 hover:bg-emerald-600 hover:text-white active:scale-95 focus:outline-none">Richiedi Scheda</button>
+                    </div>
+                </div>
+
+                <!-- Course 3: Data-BI -->
+                <div class="bg-white/5 backdrop-blur-md p-10 rounded-[3rem] border-t-4 border-t-indigo-500 border border-white/10 flex flex-col relative group transition-all duration-500 hover:-translate-y-3 hover:bg-white/[0.08] shadow-2xl">
+                    <button onclick="openCourseModal('Data-BI')" class="absolute top-8 right-8 p-3 rounded-full bg-white/5 text-slate-500 hover:text-white hover:bg-indigo-600 transition-all opacity-30 group-hover:opacity-100 z-20 focus:outline-none" title="Dettagli Corso">
+                        <i data-lucide="info" class="w-5 h-5"></i>
+                    </button>
+                    <div class="mb-10 w-20 h-20 rounded-3xl bg-slate-950/80 shadow-inner flex items-center justify-center shrink-0">
+                        <i data-lucide="database" class="w-10 h-10 text-indigo-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-black mb-4 text-white leading-tight uppercase tracking-tight">Data Storytelling & BI</h3>
+                    <p class="text-slate-500 text-sm mb-10 flex-grow leading-relaxed font-medium">Trasformare i Big Data in cruscotti decisionali dinamici per ottimizzare il Funnel AAARRR.</p>
+                    <div class="mt-auto pt-8 border-t border-white/5">
+                        <div class="text-[10px] font-black text-slate-600 uppercase tracking-[0.3em] mb-6">Expertise: Data Engineer</div>
+                        <button onclick="openContactModal('Data-BI')" class="w-full py-4 rounded-2xl text-xs font-black uppercase tracking-[0.1em] transition-all duration-300 shadow-xl bg-white/5 border border-white/10 hover:bg-indigo-600 hover:text-white active:scale-95 focus:outline-none">Richiedi Scheda</button>
+                    </div>
+                </div>
+
+                <!-- Course 4: DevSecOps -->
+                <div class="bg-white/5 backdrop-blur-md p-10 rounded-[3rem] border-t-4 border-t-orange-500 border border-white/10 flex flex-col relative group transition-all duration-500 hover:-translate-y-3 hover:bg-white/[0.08] shadow-2xl">
+                    <button onclick="openCourseModal('DevSecOps')" class="absolute top-8 right-8 p-3 rounded-full bg-white/5 text-slate-500 hover:text-white hover:bg-orange-600 transition-all opacity-30 group-hover:opacity-100 z-20 focus:outline-none" title="Dettagli Corso">
+                        <i data-lucide="info" class="w-5 h-5"></i>
+                    </button>
+                    <div class="mb-10 w-20 h-20 rounded-3xl bg-slate-950/80 shadow-inner flex items-center justify-center shrink-0">
+                        <i data-lucide="git-branch" class="w-10 h-10 text-orange-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-black mb-4 text-white leading-tight uppercase tracking-tight">DevSecOps & CI/CD Pipeline</h3>
+                    <p class="text-slate-500 text-sm mb-10 flex-grow leading-relaxed font-medium">Automazione totale della delivery con sicurezza integrata "Shift-Left".</p>
+                    <div class="mt-auto pt-8 border-t border-white/5">
+                        <div class="text-[10px] font-black text-slate-600 uppercase tracking-[0.3em] mb-6">Expertise: Senior FullStack</div>
+                        <button onclick="openContactModal('DevSecOps')" class="w-full py-4 rounded-2xl text-xs font-black uppercase tracking-[0.1em] transition-all duration-300 shadow-xl bg-white/5 border border-white/10 hover:bg-orange-600 hover:text-white active:scale-95 focus:outline-none">Richiedi Scheda</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ICE Method Section -->
+    <section id="metodo" class="py-40 px-6 bg-slate-950">
+        <div class="max-w-4xl mx-auto bg-white/5 p-20 rounded-[4rem] border border-sky-500/20 text-center relative overflow-hidden shadow-2xl">
+            <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-64 h-64 bg-sky-500/10 blur-[120px] rounded-full"></div>
+            <h2 class="text-4xl md:text-5xl font-black mb-10 uppercase tracking-tighter text-white">Priorità Basata sui Fatti</h2>
+            <p class="text-slate-400 mb-14 leading-relaxed text-xl font-light">
+                Applichiamo il framework <strong>I.C.E.</strong> per garantire che l'investimento formativo generi il massimo impatto nel minor tempo possibile. Misuriamo per crescere.
+            </p>
+            <div class="flex justify-center flex-wrap gap-12 text-sky-400 font-mono text-4xl font-black uppercase tracking-widest italic opacity-80">
+                <span>Impact</span> 
+                <span class="text-white">+</span>
+                <span>Confidence</span> 
+                <span class="text-white">+</span>
+                <span>Ease</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-24 border-t border-white/10 px-6 bg-slate-950">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-20">
+            <div>
+                <img src="https://www.itstechtalentfactory.it/wp-content/uploads/2024/10/ITS-Academy-Tech-Talent-Factory.png" alt="Logo TTF" class="h-14 w-auto mb-10 opacity-60 grayscale hover:grayscale-0 transition duration-300" />
+                <p class="text-slate-600 text-sm max-w-sm leading-relaxed font-medium">
+                    © 2026 TechTalentFactory Academy. <br />
+                    Hub di Innovazione Digitale e Alta Formazione B2B.
+                </p>
+            </div>
+            <div class="flex flex-wrap gap-20">
+                <div class="flex flex-col gap-6">
+                    <span class="text-xs font-black text-white uppercase tracking-[0.3em]">Governance</span>
+                    <a href="https://www.itstechtalentfactory.it" target="_blank" class="text-slate-500 hover:text-sky-400 text-sm font-semibold transition">ITS Academy</a>
+                    <a href="#" class="text-slate-500 hover:text-sky-400 text-sm font-semibold transition">Partner ICT</a>
+                    <a href="#" class="text-slate-500 hover:text-sky-400 text-sm font-semibold transition">Placement Metrics</a>
+                </div>
+                <div class="flex flex-col gap-8">
+                    <span class="text-xs font-black text-white uppercase tracking-[0.3em]">Connect</span>
+                    <div class="flex gap-8">
+                        <a href="#" class="text-slate-500 hover:text-white transition transform hover:scale-110"><i data-lucide="linkedin" class="w-7 h-7"></i></a>
+                        <a href="#" class="text-slate-500 hover:text-white transition transform hover:scale-110"><i data-lucide="globe" class="w-7 h-7"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================== -->
+    <!-- MODAL DI QUALIFICA LEAD (MULTI-STEP)           -->
+    <!-- ============================================== -->
+    <div id="contactModal" class="fixed inset-0 z-[100] flex items-center justify-center p-6 modal-overlay overflow-y-auto modal-container">
+        <div class="bg-slate-900 border border-white/10 p-12 rounded-[3.5rem] max-w-2xl w-full relative shadow-[0_0_80px_rgba(0,0,0,0.8)] my-auto border-t-4 border-t-sky-500 modal-content">
+            <button onclick="closeContactModal()" class="absolute top-10 right-10 text-slate-500 hover:text-white transition focus:outline-none">
+                <i data-lucide="x" class="w-8 h-8"></i>
+            </button>
+            
+            <div class="flex gap-3 mb-16 h-1.5" id="progress-bars">
+                <div class="flex-1 rounded-full transition-all duration-700 bg-sky-600 step-pb" data-step="1"></div>
+                <div class="flex-1 rounded-full transition-all duration-700 bg-white/5 step-pb" data-step="2"></div>
+                <div class="flex-1 rounded-full transition-all duration-700 bg-white/5 step-pb" data-step="3"></div>
+                <div class="flex-1 rounded-full transition-all duration-700 bg-white/5 step-pb" data-step="4"></div>
+            </div>
+
+            <form id="leadForm" class="min-h-[450px]">
+                <!-- Step 1 -->
+                <div class="step-content active" id="step-1">
+                    <h3 class="text-4xl font-black mb-4 uppercase tracking-tighter text-white">Profilazione</h3>
+                    <p class="text-slate-400 mb-10 text-lg font-light">Chi rappresenta l'esigenza in azienda?</p>
+                    <div class="space-y-6">
+                        <input type="text" id="f-nome" placeholder="Nome e Cognome" class="w-full bg-white/5 border border-white/10 p-6 rounded-2xl focus:border-sky-500 outline-none transition text-sm font-bold text-white">
+                        <input type="text" id="f-azienda" placeholder="Azienda Partner" class="w-full bg-white/5 border border-white/10 p-6 rounded-2xl focus:border-sky-500 outline-none transition text-sm font-bold text-white">
+                        <input type="text" id="f-ruolo" placeholder="Il tuo Ruolo (es. CTO, IT Manager)" class="w-full bg-white/5 border border-white/10 p-6 rounded-2xl focus:border-sky-500 outline-none transition text-sm font-bold text-white">
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step-content" id="step-2">
+                    <h3 class="text-4xl font-black mb-4 uppercase tracking-tighter text-white">Focus Tecnico</h3>
+                    <p class="text-slate-400 mb-10 text-lg font-light">Quale modulo executive è prioritario?</p>
+                    <div class="space-y-6">
+                        <select id="f-area" class="w-full bg-slate-800 border border-white/10 p-6 rounded-2xl focus:border-sky-500 outline-none transition text-sm text-white font-bold">
+                            <option value="">Seleziona Area Strategica</option>
+                            <option value="Agentic AI & RAG Mastery">Agentic AI & RAG Mastery</option>
+                            <option value="Infrastructure Hardening">Infrastructure Hardening</option>
+                            <option value="Data Storytelling & BI">Data Storytelling & BI</option>
+                            <option value="DevSecOps & CI/CD">DevSecOps & CI/CD</option>
+                        </select>
+                        <textarea id="f-problema" placeholder="Descrivi il collo di bottiglia che il team deve risolvere..." class="w-full bg-white/5 border border-white/10 p-6 rounded-2xl focus:border-sky-500 outline-none transition h-44 text-sm font-bold text-white"></textarea>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step-content" id="step-3">
+                    <h3 class="text-4xl font-black mb-4 uppercase tracking-tighter text-white">Impatto Atteso</h3>
+                    <p class="text-slate-400 mb-10 text-lg font-light">Quale ROI vi aspettate dalla formazione?</p>
+                    <div class="space-y-6">
+                        <select id="f-frequenza" class="w-full bg-slate-800 border border-white/10 p-6 rounded-2xl focus:border-sky-500 outline-none transition text-sm text-white font-bold">
+                            <option value="">Contesto dell'intervento</option>
+                            <option value="Strategico 2026">Strategico 2026</option>
+                            <option value="Urgenza su Progetto">Urgenza su Progetto (Deadline)</option>
+                            <option value="Upskilling Seniority">Upskilling Seniority Team</option>
+                        </select>
+                        <input type="text" id="f-impatto" placeholder="Esempio: -20% bug produzione, +30% velocità deploy" class="w-full bg-white/5 border border-white/10 p-6 rounded-2xl focus:border-sky-500 outline-none transition text-sm font-bold text-white">
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="step-content" id="step-4">
+                    <h3 class="text-4xl font-black mb-4 uppercase tracking-tighter text-white">Esecuzione</h3>
+                    <p class="text-slate-400 mb-10 text-lg font-light">Parametri per la proposta operativa.</p>
+                    <div class="space-y-6">
+                        <input type="number" id="f-persone" placeholder="Persone da coinvolgere" class="w-full bg-white/5 border border-white/10 p-6 rounded-2xl focus:border-sky-500 outline-none transition text-sm font-bold text-white">
+                        <select id="f-timeline" class="w-full bg-slate-800 border border-white/10 p-6 rounded-2xl focus:border-sky-500 outline-none transition text-sm text-white font-bold">
+                            <option value="">Start previsto</option>
+                            <option value="Subito (Q2)">Immediatamente (Q2)</option>
+                            <option value="Seconda metà anno">Seconda metà dell'anno</option>
+                            <option value="Valutazione Budget">Valutazione Budget Prossimo Anno</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+
+            <div class="flex justify-between mt-16">
+                <button id="btnPrev" onclick="prevStep()" class="px-10 py-5 text-slate-500 hover:text-white transition font-black uppercase text-xs tracking-[0.3em] invisible focus:outline-none">
+                    Indietro
+                </button>
+                <button id="btnNext" onclick="nextStep()" class="px-16 py-5 bg-sky-600 rounded-[2rem] font-black hover:bg-sky-500 transition uppercase tracking-widest text-sm shadow-2xl shadow-sky-600/40 flex items-center gap-3 group text-white focus:outline-none">
+                    Continua <i data-lucide="chevron-right" class="w-6 h-6 group-hover:translate-x-2 transition"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- MODAL DETTAGLIO CORSO                          -->
+    <!-- ============================================== -->
+    <div id="courseModal" class="fixed inset-0 z-[110] flex items-center justify-center p-4 modal-overlay modal-container">
+        <div class="bg-slate-900 border border-white/10 max-w-4xl w-full rounded-[4rem] overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.9)] relative flex flex-col md:flex-row h-auto max-h-[90vh] modal-content">
+            <button onclick="closeCourseModal()" class="absolute top-10 right-10 text-slate-500 hover:text-white transition z-20 focus:outline-none">
+                <i data-lucide="x" class="w-8 h-8"></i>
+            </button>
+            
+            <!-- Left Side -->
+            <div id="cm-left" class="md:w-5/12 p-16 flex flex-col items-center justify-center text-center border-b md:border-b-0 md:border-r border-white/5">
+                <!-- FIX SVG STRETCHING IN MODAL: contenitore a dimensioni fisse e icona con dimensioni fisse -->
+                <div class="mb-8 w-32 h-32 rounded-[3rem] bg-slate-950/80 shadow-2xl flex items-center justify-center shrink-0" id="cm-icon-container">
+                    <!-- L'icona verrà iniettata qui tramite JS -->
+                </div>
+                <div id="cm-expert-badge" class="text-[10px] font-black uppercase tracking-[0.5em] mb-4">Executive Training</div>
+                <h2 id="cm-title" class="text-white text-4xl font-black uppercase tracking-tighter leading-none">Title</h2>
+            </div>
+
+            <!-- Right Side -->
+            <div class="md:w-7/12 p-16 overflow-y-auto">
+                <div class="mb-14">
+                    <h4 class="text-sky-400 text-[10px] font-black uppercase tracking-[0.3em] mb-10 flex items-center gap-4">
+                        <i data-lucide="info" class="w-5 h-5"></i> Syllabus Dettagliato
+                    </h4>
+                    <ul id="cm-topics" class="space-y-8">
+                        <!-- I topic verranno iniettati qui -->
+                    </ul>
+                </div>
+
+                <div id="cm-takeaway-container" class="p-10 rounded-[3rem] border relative shadow-inner">
+                    <div class="absolute top-0 left-12 -translate-y-1/2 bg-slate-900 px-6 text-[10px] font-black uppercase tracking-widest text-white border border-white/10 rounded-full py-1">Focus Output</div>
+                    <h4 class="text-white text-xs font-black uppercase tracking-widest mb-6">Take-away per l'azienda</h4>
+                    <p id="cm-takeaway" class="text-slate-400 text-xl leading-relaxed italic font-light">
+                        <!-- Takeaway iniettato qui -->
+                    </p>
+                </div>
+
+                <button onclick="requestFromCourse()" class="mt-14 w-full py-6 bg-white text-slate-900 rounded-[2rem] font-black uppercase tracking-[0.2em] text-xs hover:bg-sky-500 hover:text-white transition-all shadow-2xl active:scale-[0.98] focus:outline-none">
+                    Prenota Assessment Strategico
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Javascript Logic -->
+    <script>
+        // Inizializza Icone Lucide al caricamento della pagina
+        document.addEventListener("DOMContentLoaded", () => {
+            lucide.createIcons();
+        });
+
+        // 1. Dati dei Corsi
+        const coursesData = {
+            'AI-RAG': {
+                title: 'Agentic AI & RAG Mastery',
+                icon: 'brain-circuit',
+                colorClasses: { bg: 'bg-sky-600/20', text: 'text-sky-400', dot: 'bg-sky-500', lightBg: 'bg-sky-500/5', lightBorder: 'border-sky-500/20' },
+                topics: [
+                    'Architetture RAG (Retrieval-Augmented Generation)',
+                    'Sviluppo Agentic Workflows con LangChain/n8n',
+                    'Fine-tuning di modelli Open Source (Llama 3)',
+                    'Gestione Vector DB (Milvus, Pinecone)',
+                    'Integrazione LLM nello stack software esistente'
+                ],
+                takeaway: 'Mettere in produzione assistenti intelligenti sicuri che riducono i tempi di ricerca e analisi documentale interna del 70%.'
+            },
+            'Hardening': {
+                title: 'Infrastructure Hardening',
+                icon: 'lock',
+                colorClasses: { bg: 'bg-emerald-600/20', text: 'text-emerald-400', dot: 'bg-emerald-500', lightBg: 'bg-emerald-500/5', lightBorder: 'border-emerald-500/20' },
+                topics: [
+                    'Hardening architetture Containerizzate (K8s)',
+                    'Cloud Security Posture Management (CSPM)',
+                    'Operatività SOC & Incident Response',
+                    'Digital Forensics per analisti IT',
+                    'Compliance GDPR & AI Act operativa'
+                ],
+                takeaway: 'Blindare il perimetro IT aziendale riducendo drasticamente la superficie di attacco e garantendo la continuità operativa.'
+            },
+            'Data-BI': {
+                title: 'Data Storytelling & BI',
+                icon: 'database',
+                colorClasses: { bg: 'bg-indigo-600/20', text: 'text-indigo-400', dot: 'bg-indigo-500', lightBg: 'bg-indigo-500/5', lightBorder: 'border-indigo-500/20' },
+                topics: [
+                    'Design di Data Warehouse & Pipeline ETL',
+                    'Advanced Querying SQL/NoSQL (BigQuery)',
+                    'Visualizzazione avanzata con Power BI',
+                    'Processing massivo con Apache Spark',
+                    'Data Storytelling per Executive decision-making'
+                ],
+                takeaway: 'Fornire al management insight strategici azionabili in tempo reale per correggere i cali di performance del funnel.'
+            },
+            'DevSecOps': {
+                title: 'DevSecOps & CI/CD Pipeline',
+                icon: 'git-branch',
+                colorClasses: { bg: 'bg-orange-600/20', text: 'text-orange-400', dot: 'bg-orange-500', lightBg: 'bg-orange-500/5', lightBorder: 'border-orange-500/20' },
+                topics: [
+                    'Automazione CI/CD (GitHub Actions, Jenkins)',
+                    'Security Automation: Scanning & Audit in pipeline',
+                    'Spring Boot & React/Angular Scalability',
+                    'Monitoring avanzato (Grafana, Stack ELK)',
+                    'Cloud Deploy Strategy (Azure/AWS)'
+                ],
+                takeaway: 'Accelerare la delivery riducendo i bug in produzione del 40% tramite flussi di lavoro automatizzati e sicuri.'
+            }
+        };
+
+        // 2. Gestione Form Multi-Step
+        let currentStep = 1;
+        const totalSteps = 4;
+
+        function openContactModal(prefillCourse = '') {
+            document.body.style.overflow = 'hidden';
+            document.getElementById('contactModal').classList.add('show');
+            currentStep = 1;
+            
+            // Seleziona automaticamente il corso se l'utente arriva dalla scheda dettaglio
+            if(prefillCourse) {
+                const areaSelect = document.getElementById('f-area');
+                const courseTitle = coursesData[prefillCourse].title;
+                for(let i=0; i<areaSelect.options.length; i++) {
+                    if(areaSelect.options[i].value === courseTitle) {
+                        areaSelect.selectedIndex = i;
+                        break;
+                    }
+                }
+            }
+            updateStepUI();
+        }
+
+        function closeContactModal() {
+            document.body.style.overflow = 'auto';
+            document.getElementById('contactModal').classList.remove('show');
+        }
+
+        function nextStep() {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                updateStepUI();
+            } else {
+                sendMail();
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                updateStepUI();
+            }
+        }
+
+        function updateStepUI() {
+            // Aggiorna visibilità step
+            document.querySelectorAll('.step-content').forEach(el => el.classList.remove('active'));
+            document.getElementById('step-' + currentStep).classList.add('active');
+
+            // Aggiorna Barra di Progresso
+            const pbs = document.querySelectorAll('.step-pb');
+            pbs.forEach((el, idx) => {
+                if (idx < currentStep) {
+                    el.classList.replace('bg-white/5', 'bg-sky-600');
+                } else {
+                    el.classList.replace('bg-sky-600', 'bg-white/5');
+                }
+            });
+
+            // Aggiorna Bottoni
+            const btnPrev = document.getElementById('btnPrev');
+            const btnNext = document.getElementById('btnNext');
+
+            if (currentStep === 1) {
+                btnPrev.classList.add('invisible');
+            } else {
+                btnPrev.classList.remove('invisible');
+            }
+
+            if (currentStep === totalSteps) {
+                btnNext.innerHTML = `Invia Richiesta <i data-lucide="chevron-right" class="w-6 h-6 group-hover:translate-x-2 transition"></i>`;
+            } else {
+                btnNext.innerHTML = `Continua <i data-lucide="chevron-right" class="w-6 h-6 group-hover:translate-x-2 transition"></i>`;
+            }
+            
+            // Renderizza l'icona chevron ogni volta che cambia il bottone
+            lucide.createIcons();
+        }
+
+        function sendMail() {
+            const nome = document.getElementById('f-nome').value || '[Non Specificato]';
+            const azienda = document.getElementById('f-azienda').value || '[Non Specificata]';
+            const ruolo = document.getElementById('f-ruolo').value || '[Non Specificato]';
+            const area = document.getElementById('f-area').value || '[Non Selezionata]';
+            const problema = document.getElementById('f-problema').value || '[Nessun Dettaglio]';
+            const frequenza = document.getElementById('f-frequenza').value || '[Non Specificato]';
+            const impatto = document.getElementById('f-impatto').value || '[Non Specificato]';
+            const persone = document.getElementById('f-persone').value || '[Non Specificato]';
+            const timeline = document.getElementById('f-timeline').value || '[Non Specificato]';
+
+            const subject = encodeURIComponent(`Richiesta Upskilling ICT TTF - ${azienda}`);
+            const body = encodeURIComponent(
+                `Ciao Team TechTalentFactory,\n\nSono ${nome} (${ruolo}) di ${azienda}.\n\n` +
+                `Siamo interessati al modulo Executive: ${area}\n` +
+                `Dettagli Sfida: ${problema}\n` +
+                `Urgenza: ${frequenza}\n` +
+                `Obiettivo ROI: ${impatto}\n\n` +
+                `Collaboratori stimati: ${persone}\n` +
+                `Timeline desiderata: ${timeline}\n\nRestiamo in attesa di un feedback tecnico.\n\nSaluti.`
+            );
+            window.location.href = `mailto:direzione@itstechtalentfactory.it?subject=${subject}&body=${body}`;
+            closeContactModal();
+        }
+
+        // 3. Gestione Course Detail Modal
+        let activeCourseId = '';
+
+        function openCourseModal(id) {
+            activeCourseId = id;
+            const course = coursesData[id];
+            
+            // Pulisce le vecchie classi e assegna quelle nuove in base al colore del corso
+            const leftPanel = document.getElementById('cm-left');
+            const expertBadge = document.getElementById('cm-expert-badge');
+            const takeawayContainer = document.getElementById('cm-takeaway-container');
+            
+            leftPanel.className = `md:w-5/12 p-16 flex flex-col items-center justify-center text-center border-b md:border-b-0 md:border-r border-white/5 ${course.colorClasses.bg}`;
+            expertBadge.className = `text-[10px] font-black uppercase tracking-[0.5em] mb-4 ${course.colorClasses.text}`;
+            takeawayContainer.className = `p-10 rounded-[3rem] border relative shadow-inner ${course.colorClasses.lightBg} ${course.colorClasses.lightBorder}`;
+
+            // Inietta il contenuto testuale
+            document.getElementById('cm-title').innerText = course.title;
+            document.getElementById('cm-takeaway').innerText = `"${course.takeaway}"`;
+
+            // INIEZIONE DELL'ICONA CON FIX ANTI-STRETCH:
+            // Assicuriamo che l'elemento <i> abbia dimensioni forzate (w-16 h-16) per l'interno del modale
+            document.getElementById('cm-icon-container').innerHTML = `<i data-lucide="${course.icon}" class="w-16 h-16 ${course.colorClasses.text} shrink-0"></i>`;
+
+            // Inietta l'elenco dei topic formativi
+            const topicsList = document.getElementById('cm-topics');
+            topicsList.innerHTML = '';
+            course.topics.forEach(topic => {
+                topicsList.innerHTML += `
+                    <li class="flex items-start gap-6 text-slate-300 group">
+                        <div class="mt-2 w-2.5 h-2.5 rounded-full shrink-0 animate-pulse ${course.colorClasses.dot}"></div>
+                        <span class="text-xl font-bold leading-tight group-hover:text-white transition duration-300">${topic}</span>
+                    </li>
+                `;
+            });
+
+            // FONDAMENTALE: Re-inizializza le icone Lucide appena inserite nel DOM
+            lucide.createIcons();
+
+            // Mostra il Modale
+            document.body.style.overflow = 'hidden';
+            document.getElementById('courseModal').classList.add('show');
+        }
+
+        function closeCourseModal() {
+            document.body.style.overflow = 'auto';
+            document.getElementById('courseModal').classList.remove('show');
+            activeCourseId = '';
+        }
+
+        function requestFromCourse() {
+            closeCourseModal();
+            // Aspetta che l'animazione di chiusura del primo modale finisca prima di aprire l'altro
+            setTimeout(() => {
+                openContactModal(activeCourseId);
+            }, 300);
+        }
+
+    </script>
+</body>
+</html>

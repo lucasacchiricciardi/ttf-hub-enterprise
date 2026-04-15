@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TTF Enterprise - Upskilling Servizi & BPO</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        sky: { 400: '#38bdf8', 500: '#0ea5e9', 600: '#0284c7' },
+                        emerald: { 400: '#34d399', 500: '#10b981', 600: '#059669' },
+                        indigo: { 400: '#818cf8', 500: '#6366f1', 600: '#4f46e5' },
+                        orange: { 400: '#fb923c', 500: '#f97316', 600: '#ea580c' }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+        }
+        .card-glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .modal-overlay {
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        /* Utility classes for steps */
+        .step-content { display: none; opacity: 0; transition: opacity 0.5s ease-in-out; }
+        .step-content.active { display: block; opacity: 1; }
+        /* Smooth modal transitions */
+        .modal-container { opacity: 0; visibility: hidden; transition: all 0.3s ease-in-out; }
+        .modal-container.show { opacity: 1; visibility: visible; }
+        .modal-content { transform: translateY(20px) scale(0.95); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .modal-container.show .modal-content { transform: translateY(0) scale(1); }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-200 min-h-screen font-sans selection:bg-indigo-500/30 overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-40 py-4 px-6 border-b border-white/10 bg-slate-950/80 backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="https://www.itstechtalentfactory.it" target="_blank" rel="noreferrer" class="flex items-center gap-4 group cursor-pointer">
+                <img src="https://www.itstechtalentfactory.it/wp-content/uploads/2024/10/ITS-Academy-Tech-Talent-Factory.png" alt="Logo TTF" class="h-10 w-auto group-hover:brightness-125 transition duration-300" />
+                <div class="hidden sm:block h-6 w-px bg-white/20"></div>
+                <span class="font-bold text-lg hidden sm:inline uppercase tracking-tighter">Enterprise <span class="text-indigo-400">Operations</span></span>
+            </a>
+            <div class="hidden md:flex gap-8 text-xs font-black uppercase tracking-widest">
+                <a href="#vision" class="hover:text-indigo-400 transition">Efficienza</a>
+                <a href="#catalogo" class="hover:text-indigo-400 transition">Catalogo B2B</a>
+                <a href="#metodo" class="hover:text-indigo-400 transition">Metodo ICE</a>
+            </div>
+            <button onclick="openContactModal()" class="bg-indigo-600 hover:bg-indigo-500 text-white px-8 py-2.5 rounded-full text-xs font-black uppercase tracking-widest transition-all shadow-lg shadow-indigo-600/20 hover:scale-105 active:scale-95">
+                Contattaci
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="vision" class="pt-52 pb-36 px-6 relative overflow-hidden bg-gradient-to-br from-slate-950 via-indigo-950 to-slate-950">
+        <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none" style="background-image: url('https://www.transparenttextures.com/patterns/cubes.png');"></div>
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <div class="inline-flex items-center gap-2 bg-indigo-500/10 text-indigo-400 px-5 py-2 rounded-full text-[10px] font-black mb-10 border border-indigo-500/20 uppercase tracking-[0.2em] animate-pulse">
+                <i data-lucide="zap" class="w-3.5 h-3.5"></i> Automazione AI & Data-Driven Strategy
+            </div>
+            <h1 class="text-6xl md:text-9xl font-black mb-10 tracking-tighter text-white leading-[0.85]">
+                L'UPSKILLING CHE <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-sky-400 uppercase">Scala i Servizi</span>.
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-400 mb-14 leading-relaxed max-w-2xl mx-auto font-light">
+                Trasferiamo l'expertise dei nostri docenti di Digital Marketing e Automation ai vostri team. Abbattiamo il "lavoro da scimmia" e aumentiamo i margini.
+            </p>
+            <div class="flex justify-center">
+                <a href="#catalogo" class="bg-white text-slate-900 px-12 py-5 rounded-2xl font-black flex items-center gap-4 hover:bg-indigo-400 transition shadow-2xl hover:scale-105 active:scale-95 text-sm uppercase tracking-wider">
+                    Sblocca l'Efficienza <i data-lucide="arrow-down" class="w-5 h-5"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Core Values / Pain Points -->
+    <section class="py-24 px-6 bg-slate-950 border-y border-white/5">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-16">
+            <div class="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-emerald-500/50 transition duration-500 group">
+                <div class="w-14 h-14 bg-emerald-500/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-emerald-500/20 transition">
+                    <i data-lucide="clock-alert" class="w-7 h-7 text-emerald-500"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4 uppercase tracking-tight text-white">Stop al Lavoro Manuale</h3>
+                <p class="text-slate-500 text-sm leading-relaxed font-medium">Ore perse in data entry e reportistica? I nostri docenti insegnano a delegare l'operatività ad agenti AI e tool No-Code.</p>
+            </div>
+            <div class="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-indigo-500/50 transition duration-500 group">
+                <div class="w-14 h-14 bg-indigo-500/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-indigo-500/20 transition">
+                    <i data-lucide="bar-chart-3" class="w-7 h-7 text-indigo-500"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4 uppercase tracking-tight text-white">Decisioni Data-Driven</h3>
+                <p class="text-slate-500 text-sm leading-relaxed font-medium">Basta navigare a vista o decidere "a pancia". Trasformiamo i dati sparsi (Social, CRM, Analytics) in cruscotti direzionali chiari.</p>
+            </div>
+            <div class="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-orange-500/50 transition duration-500 group">
+                <div class="w-14 h-14 bg-orange-500/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-orange-500/20 transition">
+                    <i data-lucide="users" class="w-7 h-7 text-orange-500"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4 uppercase tracking-tight text-white">Qualifica dei Lead</h3>
+                <p class="text-slate-500 text-sm leading-relaxed font-medium">I commerciali sprecano energia su contatti freddi. Creiamo funnel che educano e scremano i clienti prima del primo meeting.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catalogue Section -->
+    <section id="catalogo" class="py-32 px-6 bg-slate-900/30">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-24">
+                <h2 class="text-4xl md:text-7xl font-black mb-6 uppercase tracking-tighter">Catalogo <span class="text-indigo-400">Expert-Led</span></h2>
+                <p class="text-slate-400 text-xl font-light">Percorsi intensivi (40-60h) estratti dalle competenze del corso ITS in "Data Driven Digital Marketing".</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <!-- Course 1: CRO & Funnel -->
+                <div class="bg-white/5 backdrop-blur-md p-10 rounded-[3rem] border-t-4 border-t-sky-500 border border-white/10 flex flex-col relative group transition-all duration-500 hover:-translate-y-3 hover:bg-white/[0.08] shadow-2xl">
+                    <button onclick="openCourseModal('CRO')" class="absolute top-8 right-8 p-3 rounded-full bg-white/5 text-slate-500 hover:text-white hover:bg-sky-600 transition-all opacity-30 group-hover:opacity-100 z-20 focus:outline-none" title="Dettagli Corso">
+                        <i data-lucide="info" class="w-5 h-5"></i>
+                    </button>
+                    <div class="mb-10 w-20 h-20 rounded-3xl bg-slate-950/80 shadow-inner flex items-center justify-center shrink-0">
+                        <i data-lucide="filter" class="w-10 h-10 text-sky-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-black mb-4 text-white leading-tight uppercase tracking-tight">Data-Driven Sales & CRO</h3>
+                    <p class="text-slate-500 text-sm mb-10 flex-grow leading-relaxed font-medium">Tracciamento metriche chiave e ottimizzazione conversioni (A/B Test) tramite Google Analytics e Tag Manager.</p>
+                    <div class="mt-auto pt-8 border-t border-white/5">
+                        <div class="text-[10px] font-black text-slate-600 uppercase tracking-[0.3em] mb-6">Expertise: Growth Manager</div>
+                        <button onclick="openContactModal('CRO')" class="w-full py-4 rounded-2xl text-xs font-black uppercase tracking-[0.1em] transition-all duration-300 shadow-xl bg-white/5 border border-white/10 hover:bg-sky-600 hover:text-white active:scale-95 focus:outline-none">Richiedi Scheda</button>
+                    </div>
+                </div>
+
+                <!-- Course 2: Lean AI & Content Automation -->
+                <div class="bg-white/5 backdrop-blur-md p-10 rounded-[3rem] border-t-4 border-t-emerald-500 border border-white/10 flex flex-col relative group transition-all duration-500 hover:-translate-y-3 hover:bg-white/[0.08] shadow-2xl">
+                    <button onclick="openCourseModal('AI-Auto')" class="absolute top-8 right-8 p-3 rounded-full bg-white/5 text-slate-500 hover:text-white hover:bg-emerald-600 transition-all opacity-30 group-hover:opacity-100 z-20 focus:outline-none" title="Dettagli Corso">
+                        <i data-lucide="info" class="w-5 h-5"></i>
+                    </button>
+                    <div class="mb-10 w-20 h-20 rounded-3xl bg-slate-950/80 shadow-inner flex items-center justify-center shrink-0">
+                        <i data-lucide="bot" class="w-10 h-10 text-emerald-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-black mb-4 text-white leading-tight uppercase tracking-tight">Lean AI & Content Automation</h3>
+                    <p class="text-slate-500 text-sm mb-10 flex-grow leading-relaxed font-medium">SEO Copywriting e produzione multimediale potenziata da GenAI. Rispetto normativo (GDPR & AI Act).</p>
+                    <div class="mt-auto pt-8 border-t border-white/5">
+                        <div class="text-[10px] font-black text-slate-600 uppercase tracking-[0.3em] mb-6">Expertise: Content Strategist</div>
+                        <button onclick="openContactModal('AI-Auto')" class="w-full py-4 rounded-2xl text-xs font-black uppercase tracking-[0.1em] transition-all duration-300 shadow-xl bg-white/5 border border-white/10 hover:bg-emerald-600 hover:text-white active:scale-95 focus:outline-none">Richiedi Scheda</button>
+                    </div>
+                </div>
+
+                <!-- Course 3: UX Design & Neuromarketing -->
+                <div class="bg-white/5 backdrop-blur-md p-10 rounded-[3rem] border-t-4 border-t-indigo-500 border border-white/10 flex flex-col relative group transition-all duration-500 hover:-translate-y-3 hover:bg-white/[0.08] shadow-2xl">
+                    <button onclick="openCourseModal('UX-Psycho')" class="absolute top-8 right-8 p-3 rounded-full bg-white/5 text-slate-500 hover:text-white hover:bg-indigo-600 transition-all opacity-30 group-hover:opacity-100 z-20 focus:outline-none" title="Dettagli Corso">
+                        <i data-lucide="info" class="w-5 h-5"></i>
+                    </button>
+                    <div class="mb-10 w-20 h-20 rounded-3xl bg-slate-950/80 shadow-inner flex items-center justify-center shrink-0">
+                        <i data-lucide="brain" class="w-10 h-10 text-indigo-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-black mb-4 text-white leading-tight uppercase tracking-tight">UX Design & Neuromarketing</h3>
+                    <p class="text-slate-500 text-sm mb-10 flex-grow leading-relaxed font-medium">Design Thinking, User Research, UI (Figma/Sketch) e gestione dei Bias Cognitivi nelle conversioni.</p>
+                    <div class="mt-auto pt-8 border-t border-white/5">
+                        <div class="text-[10px] font-black text-slate-600 uppercase tracking-[0.3em] mb-6">Expertise: Behavioral Designer</div>
+                        <button onclick="openContactModal('UX-Psycho')" class="w-full py-4 rounded-2xl text-xs font-black uppercase tracking-[0.1em] transition-all duration-300 shadow-xl bg-white/5 border border-white/10 hover:bg-indigo-600 hover:text-white active:scale-95 focus:outline-none">Richiedi Scheda</button>
+                    </div>
+                </div>
+
+                <!-- Course 4: Business Intelligence & Data Storytelling -->
+                <div class="bg-white/5 backdrop-blur-md p-10 rounded-[3rem] border-t-4 border-t-orange-500 border border-white/10 flex flex-col relative group transition-all duration-500 hover:-translate-y-3 hover:bg-white/[0.08] shadow-2xl">
+                    <button onclick="openCourseModal('BI-Data')" class="absolute top-8 right-8 p-3 rounded-full bg-white/5 text-slate-500 hover:text-white hover:bg-orange-600 transition-all opacity-30 group-hover:opacity-100 z-20 focus:outline-none" title="Dettagli Corso">
+                        <i data-lucide="info" class="w-5 h-5"></i>
+                    </button>
+                    <div class="mb-10 w-20 h-20 rounded-3xl bg-slate-950/80 shadow-inner flex items-center justify-center shrink-0">
+                        <i data-lucide="pie-chart" class="w-10 h-10 text-orange-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-black mb-4 text-white leading-tight uppercase tracking-tight">BI & Data Storytelling</h3>
+                    <p class="text-slate-500 text-sm mb-10 flex-grow leading-relaxed font-medium">Elaborazione dati (Excel/Power BI), integrazione flussi CRM e comunicazione strategica tramite KPI visivi.</p>
+                    <div class="mt-auto pt-8 border-t border-white/5">
+                        <div class="text-[10px] font-black text-slate-600 uppercase tracking-[0.3em] mb-6">Expertise: BI Specialist</div>
+                        <button onclick="openContactModal('BI-Data')" class="w-full py-4 rounded-2xl text-xs font-black uppercase tracking-[0.1em] transition-all duration-300 shadow-xl bg-white/5 border border-white/10 hover:bg-orange-600 hover:text-white active:scale-95 focus:outline-none">Richiedi Scheda</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ICE Method Section -->
+    <section id="metodo" class="py-40 px-6 bg-slate-950">
+        <div class="max-w-4xl mx-auto bg-white/5 p-20 rounded-[4rem] border border-indigo-500/20 text-center relative overflow-hidden shadow-2xl">
+            <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-64 h-64 bg-indigo-500/10 blur-[120px] rounded-full"></div>
+            <h2 class="text-4xl md:text-5xl font-black mb-10 uppercase tracking-tighter text-white">Priorità Basata sui Fatti</h2>
+            <p class="text-slate-400 mb-14 leading-relaxed text-xl font-light">
+                Usiamo il framework <strong>I.C.E.</strong> per identificare i colli di bottiglia nei processi di vendita o gestione. Risolviamo prima i task che liberano più tempo e risorse.
+            </p>
+            <div class="flex justify-center flex-wrap gap-12 text-indigo-400 font-mono text-4xl font-black uppercase tracking-widest italic opacity-80">
+                <span>Impact</span> 
+                <span class="text-white">+</span>
+                <span>Confidence</span> 
+                <span class="text-white">+</span>
+                <span>Ease</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-24 border-t border-white/10 px-6 bg-slate-950">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-20">
+            <div>
+                <img src="https://www.itstechtalentfactory.it/wp-content/uploads/2024/10/ITS-Academy-Tech-Talent-Factory.png" alt="Logo TTF" class="h-14 w-auto mb-10 opacity-60 grayscale hover:grayscale-0 transition duration-300" />
+                <p class="text-slate-600 text-sm max-w-sm leading-relaxed font-medium">
+                    © 2026 TechTalentFactory Academy. <br />
+                    Upskilling Strategico per il Terziario Avanzato e Servizi B2B.
+                </p>
+            </div>
+            <div class="flex flex-wrap gap-20">
+                <div class="flex flex-col gap-6">
+                    <span class="text-xs font-black text-white uppercase tracking-[0.3em]">Governance</span>
+                    <a href="https://www.itstechtalentfactory.it" target="_blank" class="text-slate-500 hover:text-indigo-400 text-sm font-semibold transition">ITS Academy</a>
+                    <a href="#" class="text-slate-500 hover:text-indigo-400 text-sm font-semibold transition">Partner Servizi & BPO</a>
+                    <a href="#" class="text-slate-500 hover:text-indigo-400 text-sm font-semibold transition">Placement Metrics</a>
+                </div>
+                <div class="flex flex-col gap-8">
+                    <span class="text-xs font-black text-white uppercase tracking-[0.3em]">Connect</span>
+                    <div class="flex gap-8">
+                        <a href="#" class="text-slate-500 hover:text-white transition transform hover:scale-110"><i data-lucide="linkedin" class="w-7 h-7"></i></a>
+                        <a href="#" class="text-slate-500 hover:text-white transition transform hover:scale-110"><i data-lucide="globe" class="w-7 h-7"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================== -->
+    <!-- MODAL DI QUALIFICA LEAD (MULTI-STEP)           -->
+    <!-- ============================================== -->
+    <div id="contactModal" class="fixed inset-0 z-[100] flex items-center justify-center p-6 modal-overlay overflow-y-auto modal-container">
+        <div class="bg-slate-900 border border-white/10 p-12 rounded-[3.5rem] max-w-2xl w-full relative shadow-[0_0_80px_rgba(0,0,0,0.8)] my-auto border-t-4 border-t-indigo-500 modal-content">
+            <button onclick="closeContactModal()" class="absolute top-10 right-10 text-slate-500 hover:text-white transition focus:outline-none">
+                <i data-lucide="x" class="w-8 h-8"></i>
+            </button>
+            
+            <div class="flex gap-3 mb-16 h-1.5" id="progress-bars">
+                <div class="flex-1 rounded-full transition-all duration-700 bg-indigo-600 step-pb" data-step="1"></div>
+                <div class="flex-1 rounded-full transition-all duration-700 bg-white/5 step-pb" data-step="2"></div>
+                <div class="flex-1 rounded-full transition-all duration-700 bg-white/5 step-pb" data-step="3"></div>
+                <div class="flex-1 rounded-full transition-all duration-700 bg-white/5 step-pb" data-step="4"></div>
+            </div>
+
+            <form id="leadForm" class="min-h-[450px]">
+                <!-- Step 1 -->
+                <div class="step-content active" id="step-1">
+                    <h3 class="text-4xl font-black mb-4 uppercase tracking-tighter text-white">Profilazione</h3>
+                    <p class="text-slate-400 mb-10 text-lg font-light">Contestualizziamo la vostra realtà operativa.</p>
+                    <div class="space-y-6">
+                        <input type="text" id="f-nome" placeholder="Nome e Cognome" class="w-full bg-white/5 border border-white/10 p-6 rounded-2xl focus:border-indigo-500 outline-none transition text-sm font-bold text-white">
+                        <input type="text" id="f-azienda" placeholder="Azienda / Agenzia Partner" class="w-full bg-white/5 border border-white/10 p-6 rounded-2xl focus:border-indigo-500 outline-none transition text-sm font-bold text-white">
+                        <input type="text" id="f-ruolo" placeholder="Il tuo Ruolo (es. COO, HR, Sales Manager)" class="w-full bg-white/5 border border-white/10 p-6 rounded-2xl focus:border-indigo-500 outline-none transition text-sm font-bold text-white">
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step-content" id="step-2">
+                    <h3 class="text-4xl font-black mb-4 uppercase tracking-tighter text-white">Il Blocco Operativo</h3>
+                    <p class="text-slate-400 mb-10 text-lg font-light">Quale competenza manca al tuo team oggi?</p>
+                    <div class="space-y-6">
+                        <select id="f-area" class="w-full bg-slate-800 border border-white/10 p-6 rounded-2xl focus:border-indigo-500 outline-none transition text-sm text-white font-bold">
+                            <option value="">Seleziona Area Formativa</option>
+                            <option value="Data-Driven Sales & CRO">Data-Driven Sales & CRO</option>
+                            <option value="Lean AI & Content Automation">Lean AI & Content Automation</option>
+                            <option value="UX Design & Neuromarketing">UX Design & Neuromarketing</option>
+                            <option value="Business Intelligence & Data Storytelling">Business Intelligence & Data Storytelling</option>
+                        </select>
+                        <textarea id="f-problema" placeholder="Descrivi il processo manuale o l'inefficienza che vorresti risolvere..." class="w-full bg-white/5 border border-white/10 p-6 rounded-2xl focus:border-indigo-500 outline-none transition h-44 text-sm font-bold text-white"></textarea>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step-content" id="step-3">
+                    <h3 class="text-4xl font-black mb-4 uppercase tracking-tighter text-white">Costo dell'Inefficienza</h3>
+                    <p class="text-slate-400 mb-10 text-lg font-light">Quantifichiamo l'impatto sul business.</p>
+                    <div class="space-y-6">
+                        <select id="f-frequenza" class="w-full bg-slate-800 border border-white/10 p-6 rounded-2xl focus:border-indigo-500 outline-none transition text-sm text-white font-bold">
+                            <option value="">Ore uomo perse mensilmente?</option>
+                            <option value="+100 ore / mese">+100 ore (Critico)</option>
+                            <option value="40-100 ore / mese">40-100 ore (Significativo)</option>
+                            <option value="<40 ore / mese">Meno di 40 ore (Migliorabile)</option>
+                        </select>
+                        <input type="text" id="f-impatto" placeholder="Obiettivo (es. Qualificare più lead, automatizzare fatture)" class="w-full bg-white/5 border border-white/10 p-6 rounded-2xl focus:border-indigo-500 outline-none transition text-sm font-bold text-white">
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="step-content" id="step-4">
+                    <h3 class="text-4xl font-black mb-4 uppercase tracking-tighter text-white">Perimetro Intervento</h3>
+                    <p class="text-slate-400 mb-10 text-lg font-light">Parametri operativi per la formazione.</p>
+                    <div class="space-y-6">
+                        <input type="number" id="f-persone" placeholder="Numero collaboratori da formare" class="w-full bg-white/5 border border-white/10 p-6 rounded-2xl focus:border-indigo-500 outline-none transition text-sm font-bold text-white">
+                        <select id="f-timeline" class="w-full bg-slate-800 border border-white/10 p-6 rounded-2xl focus:border-indigo-500 outline-none transition text-sm text-white font-bold">
+                            <option value="">Timeline di avvio</option>
+                            <option value="Entro il Trimestre">Entro il Trimestre</option>
+                            <option value="Entro 6 mesi">Entro 6 mesi</option>
+                            <option value="Solo esplorazione">Solo esplorazione preventiva</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+
+            <div class="flex justify-between mt-16">
+                <button id="btnPrev" onclick="prevStep()" class="px-10 py-5 text-slate-500 hover:text-white transition font-black uppercase text-xs tracking-[0.3em] invisible focus:outline-none">
+                    Indietro
+                </button>
+                <button id="btnNext" onclick="nextStep()" class="px-16 py-5 bg-indigo-600 rounded-[2rem] font-black hover:bg-indigo-500 transition uppercase tracking-widest text-sm shadow-2xl shadow-indigo-600/40 flex items-center gap-3 group text-white focus:outline-none">
+                    Continua <i data-lucide="chevron-right" class="w-6 h-6 group-hover:translate-x-2 transition"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- MODAL DETTAGLIO CORSO                          -->
+    <!-- ============================================== -->
+    <div id="courseModal" class="fixed inset-0 z-[110] flex items-center justify-center p-4 modal-overlay modal-container">
+        <div class="bg-slate-900 border border-white/10 max-w-4xl w-full rounded-[4rem] overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.9)] relative flex flex-col md:flex-row h-auto max-h-[90vh] modal-content">
+            <button onclick="closeCourseModal()" class="absolute top-10 right-10 text-slate-500 hover:text-white transition z-20 focus:outline-none">
+                <i data-lucide="x" class="w-8 h-8"></i>
+            </button>
+            
+            <!-- Left Side -->
+            <div id="cm-left" class="md:w-5/12 p-16 flex flex-col items-center justify-center text-center border-b md:border-b-0 md:border-r border-white/5">
+                <div class="mb-8 w-32 h-32 rounded-[3rem] bg-slate-950/80 shadow-2xl flex items-center justify-center shrink-0" id="cm-icon-container">
+                    <!-- Icon inyectata via JS -->
+                </div>
+                <div id="cm-expert-badge" class="text-[10px] font-black uppercase tracking-[0.5em] mb-4">Mastery Program</div>
+                <h2 id="cm-title" class="text-white text-4xl font-black uppercase tracking-tighter leading-none">Title</h2>
+            </div>
+
+            <!-- Right Side -->
+            <div class="md:w-7/12 p-16 overflow-y-auto">
+                <div class="mb-14">
+                    <h4 class="text-indigo-400 text-[10px] font-black uppercase tracking-[0.3em] mb-10 flex items-center gap-4">
+                        <i data-lucide="info" class="w-5 h-5"></i> Syllabus Dettagliato
+                    </h4>
+                    <ul id="cm-topics" class="space-y-8">
+                        <!-- Topic inyectati via JS -->
+                    </ul>
+                </div>
+
+                <div id="cm-takeaway-container" class="p-10 rounded-[3rem] border relative shadow-inner">
+                    <div class="absolute top-0 left-12 -translate-y-1/2 bg-slate-900 px-6 text-[10px] font-black uppercase tracking-widest text-white border border-white/10 rounded-full py-1">Business Output</div>
+                    <h4 class="text-white text-xs font-black uppercase tracking-widest mb-6">Valore per il team</h4>
+                    <p id="cm-takeaway" class="text-slate-400 text-xl leading-relaxed italic font-light">
+                        <!-- Takeaway inyectato via JS -->
+                    </p>
+                </div>
+
+                <button onclick="requestFromCourse()" class="mt-14 w-full py-6 bg-white text-slate-900 rounded-[2rem] font-black uppercase tracking-[0.2em] text-xs hover:bg-indigo-500 hover:text-white transition-all shadow-2xl active:scale-[0.98] focus:outline-none">
+                    Prenota Analisi Fattibilità
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Javascript Logic -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            lucide.createIcons();
+        });
+
+        // 1. Dati dei Corsi - CLUSTER 2 (BPO, Servizi, Commercio)
+        const coursesData = {
+            'CRO': {
+                title: 'Data-Driven Sales & CRO',
+                icon: 'filter',
+                colorClasses: { bg: 'bg-sky-600/20', text: 'text-sky-400', dot: 'bg-sky-500', lightBg: 'bg-sky-500/5', lightBorder: 'border-sky-500/20' },
+                topics: [
+                    'Costruzione e monitoraggio del Funnel B2B/B2C (AAARRR)',
+                    'Tracciamento avanzato: Google Analytics & GTM',
+                    'Conversion Rate Optimization (CRO) e A/B Testing',
+                    'Identificazione colli di bottiglia e metriche (ROI)',
+                    'Sviluppo di test di validazione UX'
+                ],
+                takeaway: 'Smettere di navigare a vista: trasformare il traffico in clienti qualificati aumentando i tassi di conversione e riducendo i costi di acquisizione.'
+            },
+            'AI-Auto': {
+                title: 'Lean AI & Content Automation',
+                icon: 'bot',
+                colorClasses: { bg: 'bg-emerald-600/20', text: 'text-emerald-400', dot: 'bg-emerald-500', lightBg: 'bg-emerald-500/5', lightBorder: 'border-emerald-500/20' },
+                topics: [
+                    'GenAI per SEO Copywriting e Storytelling aziendale',
+                    'Produzione multimediale (Suite Adobe + Intelligenza Artificiale)',
+                    'Gestione Content Management System (Wordpress, e-commerce)',
+                    'Normativa operativa: Diritto Digitale, GDPR e AI Act',
+                    'Impostazione flussi di automazione marketing'
+                ],
+                takeaway: 'Abbattere il lavoro manuale: scalare la produzione di contenuti e automatizzare la qualifica lead, liberando il 40% del tempo operativo del team.'
+            },
+            'UX-Psycho': {
+                title: 'UX Design & Neuromarketing',
+                icon: 'brain',
+                colorClasses: { bg: 'bg-indigo-600/20', text: 'text-indigo-400', dot: 'bg-indigo-500', lightBg: 'bg-indigo-500/5', lightBorder: 'border-indigo-500/20' },
+                topics: [
+                    'Psicologia del Consumatore, Bias Cognitivi e Neuromarketing',
+                    'User Research avanzata: UX Personas e Customer Journey',
+                    'Applicazione metodologie di Design Thinking',
+                    'Progettazione Interfacce UI professionali (Figma, Sketch, Adobe XD)',
+                    'Meccanismi di fidelizzazione e Retention strategy'
+                ],
+                takeaway: 'Progettare interfacce e percorsi utente basati sulla psicologia cognitiva per abbassare gli attriti all\'acquisto e fidelizzare i clienti a lungo termine.'
+            },
+            'BI-Data': {
+                title: 'Business Intelligence & Data Storytelling',
+                icon: 'pie-chart',
+                colorClasses: { bg: 'bg-orange-600/20', text: 'text-orange-400', dot: 'bg-orange-500', lightBg: 'bg-orange-500/5', lightBorder: 'border-orange-500/20' },
+                topics: [
+                    'Elaborazione dati e funzioni logiche/ricerca in MS Excel',
+                    'Creazione Dashboard interattive e KPI visuali in Power BI',
+                    'Incrocio dati cross-channel (Google Analytics, Social, SEM, CRM)',
+                    'Importazione dati da fonti esterne (Web, CSV, ecc.)',
+                    'Data Storytelling: far emergere opportunità dai numeri'
+                ],
+                takeaway: 'Costruire cruscotti direzionali automatizzati per visualizzare il ROI in tempo reale e allineare le decisioni strategiche ai reali colli di bottiglia aziendali.'
+            }
+        };
+
+        // 2. Gestione Form Multi-Step
+        let currentStep = 1;
+        const totalSteps = 4;
+
+        function openContactModal(prefillCourse = '') {
+            document.body.style.overflow = 'hidden';
+            document.getElementById('contactModal').classList.add('show');
+            currentStep = 1;
+            
+            if(prefillCourse) {
+                const areaSelect = document.getElementById('f-area');
+                const courseTitle = coursesData[prefillCourse].title;
+                for(let i=0; i<areaSelect.options.length; i++) {
+                    if(areaSelect.options[i].value === courseTitle) {
+                        areaSelect.selectedIndex = i;
+                        break;
+                    }
+                }
+            }
+            updateStepUI();
+        }
+
+        function closeContactModal() {
+            document.body.style.overflow = 'auto';
+            document.getElementById('contactModal').classList.remove('show');
+        }
+
+        function nextStep() {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                updateStepUI();
+            } else {
+                sendMail();
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                updateStepUI();
+            }
+        }
+
+        function updateStepUI() {
+            document.querySelectorAll('.step-content').forEach(el => el.classList.remove('active'));
+            document.getElementById('step-' + currentStep).classList.add('active');
+
+            const pbs = document.querySelectorAll('.step-pb');
+            pbs.forEach((el, idx) => {
+                if (idx < currentStep) {
+                    el.classList.replace('bg-white/5', 'bg-indigo-600');
+                } else {
+                    el.classList.replace('bg-indigo-600', 'bg-white/5');
+                }
+            });
+
+            const btnPrev = document.getElementById('btnPrev');
+            const btnNext = document.getElementById('btnNext');
+
+            if (currentStep === 1) {
+                btnPrev.classList.add('invisible');
+            } else {
+                btnPrev.classList.remove('invisible');
+            }
+
+            if (currentStep === totalSteps) {
+                btnNext.innerHTML = `Invia Richiesta <i data-lucide="chevron-right" class="w-6 h-6 group-hover:translate-x-2 transition"></i>`;
+            } else {
+                btnNext.innerHTML = `Continua <i data-lucide="chevron-right" class="w-6 h-6 group-hover:translate-x-2 transition"></i>`;
+            }
+            
+            lucide.createIcons();
+        }
+
+        function sendMail() {
+            const nome = document.getElementById('f-nome').value || '[Non Specificato]';
+            const azienda = document.getElementById('f-azienda').value || '[Non Specificata]';
+            const ruolo = document.getElementById('f-ruolo').value || '[Non Specificato]';
+            const area = document.getElementById('f-area').value || '[Non Selezionata]';
+            const problema = document.getElementById('f-problema').value || '[Nessun Dettaglio]';
+            const frequenza = document.getElementById('f-frequenza').value || '[Non Specificato]';
+            const impatto = document.getElementById('f-impatto').value || '[Non Specificato]';
+            const persone = document.getElementById('f-persone').value || '[Non Specificato]';
+            const timeline = document.getElementById('f-timeline').value || '[Non Specificato]';
+
+            const subject = encodeURIComponent(`Richiesta Efficienza BPO/Servizi TTF - ${azienda}`);
+            const body = encodeURIComponent(
+                `Ciao Team TechTalentFactory,\n\nSono ${nome} (${ruolo}) di ${azienda}.\n\n` +
+                `Abbiamo un'esigenza di Upskilling nell'area: ${area}\n` +
+                `Dettaglio del blocco operativo: ${problema}\n` +
+                `Ore perse in inefficienza: ${frequenza}\n` +
+                `Obiettivo ROI desiderato: ${impatto}\n\n` +
+                `Collaboratori stimati per il corso: ${persone}\n` +
+                `Timeline di avvio: ${timeline}\n\nRestiamo in attesa di confrontarci su un percorso mirato.\n\nSaluti.`
+            );
+            window.location.href = `mailto:direzione@itstechtalentfactory.it?subject=${subject}&body=${body}`;
+            closeContactModal();
+        }
+
+        // 3. Gestione Course Detail Modal
+        let activeCourseId = '';
+
+        function openCourseModal(id) {
+            activeCourseId = id;
+            const course = coursesData[id];
+            
+            const leftPanel = document.getElementById('cm-left');
+            const expertBadge = document.getElementById('cm-expert-badge');
+            const takeawayContainer = document.getElementById('cm-takeaway-container');
+            
+            leftPanel.className = `md:w-5/12 p-16 flex flex-col items-center justify-center text-center border-b md:border-b-0 md:border-r border-white/5 ${course.colorClasses.bg}`;
+            expertBadge.className = `text-[10px] font-black uppercase tracking-[0.5em] mb-4 ${course.colorClasses.text}`;
+            takeawayContainer.className = `p-10 rounded-[3rem] border relative shadow-inner ${course.colorClasses.lightBg} ${course.colorClasses.lightBorder}`;
+
+            document.getElementById('cm-title').innerText = course.title;
+            document.getElementById('cm-takeaway').innerText = `"${course.takeaway}"`;
+
+            // INIEZIONE ICONA CON DIMENSIONI FISSE (w-16 h-16 shrink-0)
+            document.getElementById('cm-icon-container').innerHTML = `<i data-lucide="${course.icon}" class="w-16 h-16 ${course.colorClasses.text} shrink-0"></i>`;
+
+            const topicsList = document.getElementById('cm-topics');
+            topicsList.innerHTML = '';
+            course.topics.forEach(topic => {
+                topicsList.innerHTML += `
+                    <li class="flex items-start gap-6 text-slate-300 group">
+                        <div class="mt-2 w-2.5 h-2.5 rounded-full shrink-0 animate-pulse ${course.colorClasses.dot}"></div>
+                        <span class="text-xl font-bold leading-tight group-hover:text-white transition duration-300">${topic}</span>
+                    </li>
+                `;
+            });
+
+            lucide.createIcons();
+
+            document.body.style.overflow = 'hidden';
+            document.getElementById('courseModal').classList.add('show');
+        }
+
+        function closeCourseModal() {
+            document.body.style.overflow = 'auto';
+            document.getElementById('courseModal').classList.remove('show');
+            activeCourseId = '';
+        }
+
+        function requestFromCourse() {
+            closeCourseModal();
+            setTimeout(() => {
+                openContactModal(activeCourseId);
+            }, 300);
+        }
+
+    </script>
+</body>
+</html>
