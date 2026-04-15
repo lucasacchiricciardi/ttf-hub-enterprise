@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TTF Enterprise - Digitalizzazione Industria & Export</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg {
+            background: linear-gradient(135deg, #0f172a 0%, #431407 100%);
+        }
+        .card-glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .accent-glow {
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.15);
+        }
+        .text-glow {
+            text-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
+        }
+        .step-content { display: none; }
+        .step-content.active { display: block; }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-200">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 py-3 px-6 border-b border-white/10 card-glass">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="https://www.itstechtalentfactory.it" target="_blank" class="flex items-center gap-4">
+                <img src="https://www.itstechtalentfactory.it/wp-content/uploads/2024/10/ITS-Academy-Tech-Talent-Factory.png" alt="ITS Academy Tech Talent Factory" class="h-10 md:h-12 w-auto brightness-110">
+                <div class="hidden sm:block h-6 w-px bg-white/20 mx-2"></div>
+                <span class="font-bold text-lg tracking-tight hidden sm:inline-block">INDUSTRIAL <span class="text-amber-500 font-normal uppercase">Evolution</span></span>
+            </a>
+            <div class="hidden md:flex gap-8 text-sm font-medium">
+                <a href="#vision" class="hover:text-amber-500 transition">Competitività</a>
+                <a href="#corsi" class="hover:text-amber-500 transition">Percorsi Aziendali</a>
+                <a href="#metodo" class="hover:text-amber-500 transition">Metodo ICE</a>
+            </div>
+            <button class="bg-amber-600 hover:bg-amber-500 text-white px-5 py-2 rounded-full text-sm font-semibold transition" onclick="showContactModal()">
+                Contattaci
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="vision" class="pt-40 pb-24 px-6 gradient-bg">
+        <div class="max-w-4xl mx-auto text-center text-white">
+            <div class="inline-flex items-center gap-2 bg-amber-500/10 text-amber-400 px-4 py-1.5 rounded-full text-xs font-bold mb-6 border border-amber-500/20 uppercase tracking-widest">
+                <i data-lucide="factory" class="w-3 h-3"></i> Verso l'Industria 4.0 Pratica
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 tracking-tight leading-tight">
+                Porta la tua <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500 text-glow">Eccellenza Produttiva</span> nel mondo digitale.
+            </h1>
+            <p class="text-lg md:text-xl text-slate-300 mb-10 leading-relaxed max-w-2xl mx-auto">
+                Aiutiamo le imprese manifatturiere a eliminare le inefficienze e a scalare i mercati internazionali tramite strategie digitali basate sui dati. Meno teoria, più ROI.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#corsi" class="bg-white text-orange-950 px-8 py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-amber-100 transition shadow-lg shadow-amber-500/10">
+                    Sblocca l'Innovazione <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Problems / Pain Points -->
+    <section class="py-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Cosa frena la PMI Manifatturiera?</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">Risolviamo i problemi concreti che impediscono alle eccellenze locali di competere globalmente.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-glass p-8 rounded-3xl border-t-2 border-t-amber-500/30">
+                    <i data-lucide="globe" class="text-amber-500 mb-6 w-10 h-10"></i>
+                    <h3 class="text-xl font-bold mb-3 uppercase tracking-tight text-white">Dipendenza dalle Fiere</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">I costi di acquisizione clienti offline sono alle stelle. Serve un sistema digitale per intercettare i buyer esteri 365 giorni l'anno.</p>
+                </div>
+                <div class="card-glass p-8 rounded-3xl border-t-2 border-t-amber-500/30">
+                    <i data-lucide="hard-hat" class="text-amber-500 mb-6 w-10 h-10"></i>
+                    <h3 class="text-xl font-bold mb-3 uppercase tracking-tight text-white">Sprechi di Processo</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Gap comunicativo tra ufficio tecnico, vendite e produzione. Dati dispersi su fogli di carta o software non integrati.</p>
+                </div>
+                <div class="card-glass p-8 rounded-3xl border-t-2 border-t-amber-500/30">
+                    <i data-lucide="cpu" class="text-amber-500 mb-6 w-10 h-10"></i>
+                    <h3 class="text-xl font-bold mb-3 uppercase tracking-tight text-white">Paura dell'AI</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">L'Intelligenza Artificiale è vista come lontana o pericolosa. Invece è lo strumento chiave per ottimizzare scorte e qualità.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Corsi Executive -->
+    <section id="corsi" class="py-24 px-6 bg-slate-900/50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl font-bold mb-16 text-center">Moduli Operativi <span class="text-amber-400">Industria 4.0</span></h2>
+            
+            <div class="grid lg:grid-cols-3 gap-10">
+                <!-- Proposta 1 -->
+                <div class="flex flex-col bg-slate-800/40 rounded-[2rem] overflow-hidden border border-white/5 accent-glow transition-all hover:-translate-y-2 hover:border-amber-500/50">
+                    <div class="p-10 text-white">
+                        <div class="bg-amber-500/20 text-amber-400 text-[10px] font-black uppercase px-3 py-1 rounded-md mb-6 w-fit tracking-tighter">MARKETING B2B</div>
+                        <h3 class="text-2xl font-bold mb-4">SOCIAL & SEARCH DISCOVERY EXPORT</h3>
+                        <p class="text-slate-400 text-sm mb-8 leading-relaxed">
+                            Come farsi trovare dai buyer internazionali su Google e LinkedIn. Strategie di posizionamento per settori "non sexy" ma ad alto valore aggiunto.
+                        </p>
+                        <ul class="space-y-4 mb-10">
+                            <li class="flex items-start gap-3 text-sm">
+                                <i data-lucide="check" class="text-amber-500 w-5 h-5 shrink-0"></i>
+                                <span>LinkedIn Ads per il Manifatturiero</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-sm">
+                                <i data-lucide="check" class="text-amber-500 w-5 h-5 shrink-0"></i>
+                                <span>SEO Strategica per Mercati Esteri</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-sm">
+                                <i data-lucide="check" class="text-amber-500 w-5 h-5 shrink-0"></i>
+                                <span>Conversion Rate Optimization B2B</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mt-auto p-8 bg-amber-900/10 border-t border-white/5">
+                        <button class="w-full py-4 bg-amber-600 rounded-2xl font-bold hover:bg-amber-500 transition shadow-lg" onclick="showContactModal()">RICHIEDI SCHEDA</button>
+                    </div>
+                </div>
+
+                <!-- Proposta 2 -->
+                <div class="flex flex-col bg-slate-800/40 rounded-[2rem] overflow-hidden border border-white/5 accent-glow transition-all hover:-translate-y-2 hover:border-amber-500/50">
+                    <div class="p-10 text-white">
+                        <div class="bg-orange-500/20 text-orange-400 text-[10px] font-black uppercase px-3 py-1 rounded-md mb-6 w-fit tracking-tighter">DIGITALIZATION</div>
+                        <h3 class="text-2xl font-bold mb-4 uppercase tracking-tight">Efficienza Operativa & Paperless</h3>
+                        <p class="text-slate-400 text-sm mb-8 leading-relaxed">
+                            Eliminare la carta e i task manuali tra ufficio e officina. Implementazione di workflow digitali integrati per monitorare lo stato delle commesse.
+                        </p>
+                        <ul class="space-y-4 mb-10">
+                            <li class="flex items-start gap-3 text-sm">
+                                <i data-lucide="check" class="text-orange-500 w-5 h-5 shrink-0"></i>
+                                <span>Digitalizzazione Ufficio Tecnico</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-sm">
+                                <i data-lucide="check" class="text-orange-500 w-5 h-5 shrink-0"></i>
+                                <span>Gestione Dati Produzione No-Code</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-sm">
+                                <i data-lucide="check" class="text-orange-500 w-5 h-5 shrink-0"></i>
+                                <span>Cyber Security Industriale base</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mt-auto p-8 bg-orange-900/10 border-t border-white/5">
+                        <button class="w-full py-4 bg-orange-600 rounded-2xl font-bold hover:bg-orange-500 transition" onclick="showContactModal()">RICHIEDI SCHEDA</button>
+                    </div>
+                </div>
+
+                <!-- Proposta 3 -->
+                <div class="flex flex-col bg-slate-800/40 rounded-[2rem] overflow-hidden border border-white/5 accent-glow transition-all hover:-translate-y-2 hover:border-amber-500/50">
+                    <div class="p-10 text-white">
+                        <div class="bg-slate-500/20 text-slate-400 text-[10px] font-black uppercase px-3 py-1 rounded-md mb-6 w-fit tracking-tighter">FUTURE TECH</div>
+                        <h3 class="text-2xl font-bold mb-4 uppercase tracking-tight text-white">IoT & Digital Twin Literacy</h3>
+                        <p class="text-slate-400 text-sm mb-8 leading-relaxed">
+                            Capire l'Internet of Things e i Gemelli Digitali. Come i dati estratti dalle macchine possono migliorare la manutenzione e il design di prodotto.
+                        </p>
+                        <ul class="space-y-4 mb-10">
+                            <li class="flex items-start gap-3 text-sm">
+                                <i data-lucide="check" class="text-slate-400 w-5 h-5 shrink-0"></i>
+                                <span>Fondamenti di Sensoristica IoT</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-sm">
+                                <i data-lucide="check" class="text-slate-400 w-5 h-5 shrink-0"></i>
+                                <span>Visualizzazione Dati in Officina</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-sm">
+                                <i data-lucide="check" class="text-slate-400 w-5 h-5 shrink-0"></i>
+                                <span>AI per la Manutenzione Preventiva</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mt-auto p-8 bg-slate-800 border-t border-white/5">
+                        <button class="w-full py-4 bg-slate-700 rounded-2xl font-bold hover:bg-slate-600 transition" onclick="showContactModal()">RICHIEDI SCHEDA</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Metodo Section -->
+    <section id="metodo" class="py-24 px-6">
+        <div class="max-w-4xl mx-auto card-glass p-12 rounded-[2.5rem] border border-amber-500/20 text-center relative overflow-hidden">
+            <div class="absolute -top-10 -right-10 w-40 h-40 bg-amber-500/10 blur-3xl"></div>
+            <h2 class="text-3xl font-bold mb-6 text-white uppercase tracking-tight">Risultati Certificati dai Dati</h2>
+            <p class="text-slate-400 mb-10 leading-relaxed text-lg">
+                Utilizziamo il metodo <strong>I.C.E.</strong> per garantire che ogni workshop porti un vantaggio competitivo immediato. 
+                Focalizziamo gli sforzi dove l'impatto economico è maggiore e la facilità di messa a terra è massima.
+            </p>
+            <div class="flex justify-center flex-wrap gap-8 text-amber-500 font-mono text-2xl font-bold uppercase tracking-widest">
+                <span class="opacity-50">Impact</span> 
+                <span class="text-white">+</span>
+                <span class="opacity-75">Confidence</span> 
+                <span class="text-white">+</span>
+                <span>Ease</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-16 border-t border-white/10 px-6 bg-slate-950">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12 text-white">
+            <div class="flex flex-col items-center md:items-start gap-4">
+                <img src="https://www.itstechtalentfactory.it/wp-content/uploads/2024/10/ITS-Academy-Tech-Talent-Factory.png" alt="Logo TTF" class="h-10 w-auto opacity-70 grayscale hover:grayscale-0 transition cursor-pointer">
+                <p class="text-slate-500 text-xs text-center md:text-left">
+                    © 2026 TechTalentFactory Academy. <br>
+                    Supporto Strategico alla Digitalizzazione delle PMI Italiane.
+                </p>
+            </div>
+            <div class="flex gap-6">
+                <a href="https://www.linkedin.com/company/its-tech-talent-factory/" target="_blank" class="text-slate-400 hover:text-white transition"><i data-lucide="linkedin"></i></a>
+                <a href="https://www.itstechtalentfactory.it" target="_blank" class="text-slate-400 hover:text-white transition"><i data-lucide="globe"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Multi-Step Qualification Modal -->
+    <div id="modal" class="hidden fixed inset-0 bg-black/95 z-[100] flex items-center justify-center p-6 backdrop-blur-sm overflow-y-auto">
+        <div class="bg-slate-900 border border-white/10 p-8 md:p-10 rounded-[2.5rem] max-w-xl w-full relative shadow-2xl my-auto text-white">
+            <button onclick="hideContactModal()" class="absolute top-8 right-8 text-slate-400 hover:text-white"><i data-lucide="x"></i></button>
+            
+            <!-- Progress Bar -->
+            <div class="flex gap-2 mb-8 h-1">
+                <div class="flex-1 rounded-full bg-amber-600" id="pb-1"></div>
+                <div class="flex-1 rounded-full bg-white/10" id="pb-2"></div>
+                <div class="flex-1 rounded-full bg-white/10" id="pb-3"></div>
+                <div class="flex-1 rounded-full bg-white/10" id="pb-4"></div>
+            </div>
+
+            <!-- Step 1: Profiling -->
+            <div class="step-content active" id="step-1">
+                <h3 class="text-2xl font-bold mb-2 uppercase tracking-tight">Profilo Aziendale</h3>
+                <p class="text-slate-400 text-sm mb-8 leading-relaxed">Inquadriamo la vostra realtà produttiva.</p>
+                <div class="space-y-4">
+                    <input type="text" id="ans-nome" placeholder="Nome e Cognome Referente" class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl focus:border-amber-500 outline-none transition text-sm">
+                    <input type="text" id="ans-azienda" placeholder="Ragione Sociale Azienda" class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl focus:border-amber-500 outline-none transition text-sm text-white">
+                    <select id="ans-settore" class="w-full bg-slate-800 border border-white/10 p-4 rounded-2xl focus:border-amber-500 outline-none transition text-sm text-white">
+                        <option value="">Settore di Riferimento</option>
+                        <option value="Meccanica">Meccanica di Precisione</option>
+                        <option value="Impianti">Installazione Impianti</option>
+                        <option value="Produzione">Produzione Industriale</option>
+                        <option value="Automotive">Automotive / Aerospace</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Step 2: Problem Identification -->
+            <div class="step-content" id="step-2">
+                <h3 class="text-2xl font-bold mb-2 uppercase tracking-tight">Ostacoli alla Crescita</h3>
+                <p class="text-slate-400 text-sm mb-8 leading-relaxed">Qual è la sfida che vi toglie il sonno?</p>
+                <div class="space-y-4">
+                    <select id="ans-area" class="w-full bg-slate-800 border border-white/10 p-4 rounded-2xl focus:border-amber-500 outline-none transition text-sm text-white">
+                        <option value="">Seleziona Area Critica</option>
+                        <option value="Export">Difficoltà a trovare clienti all'estero</option>
+                        <option value="Inefficienza">Sprechi e inefficienze comunicative</option>
+                        <option value="Obsolescenza">Personale non aggiornato su nuove tecnologie</option>
+                        <option value="Industry4.0">Mancanza di visione su IoT / Big Data</option>
+                    </select>
+                    <textarea id="ans-problema" placeholder="Descrivi brevemente un collo di bottiglia specifico..." class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl focus:border-amber-500 outline-none transition h-28 text-sm text-white"></textarea>
+                </div>
+            </div>
+
+            <!-- Step 3: Urgency & Impact -->
+            <div class="step-content" id="step-3">
+                <h3 class="text-2xl font-bold mb-2 uppercase tracking-tight">Valore dell'Intervento</h3>
+                <p class="text-slate-400 text-sm mb-8 leading-relaxed">Cosa cambierebbe risolvendo questo problema?</p>
+                <div class="space-y-4">
+                    <div class="text-xs uppercase font-bold text-amber-400 mb-2">Quanto è urgente?</div>
+                    <select id="ans-frequenza" class="w-full bg-slate-800 border border-white/10 p-4 rounded-2xl focus:border-amber-500 outline-none transition text-sm text-white">
+                        <option value="Strategico">Pianificazione Strategica 2026</option>
+                        <option value="Immediato">Immediato (Perdita di competitività in corso)</option>
+                        <option value="Formativo">Esigenza puramente formativa</option>
+                    </select>
+                    <div class="text-xs uppercase font-bold text-amber-400 mt-4 mb-2">Obiettivo ROI Principale:</div>
+                    <input type="text" id="ans-impatto" placeholder="es: +20% export, -15% tempi produzione, Riduzione scarti" class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl focus:border-amber-500 outline-none transition text-sm text-white">
+                </div>
+            </div>
+
+            <!-- Step 4: Constraints & Goal -->
+            <div class="step-content" id="step-4">
+                <h3 class="text-2xl font-bold mb-2 uppercase tracking-tight">Piano di Fattibilità</h3>
+                <p class="text-slate-400 text-sm mb-8 leading-relaxed">Dettagli per l'organizzazione del corso aziendale.</p>
+                <div class="space-y-4">
+                    <input type="number" id="ans-persone" placeholder="Numero collaboratori coinvolti" class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl focus:border-amber-500 outline-none transition text-sm text-white">
+                    <select id="ans-finanziamento" class="w-full bg-slate-800 border border-white/10 p-4 rounded-2xl focus:border-amber-500 outline-none transition text-sm text-white">
+                        <option value="">Possibilità di finanziamento</option>
+                        <option value="Fondimpresa">Interessati a Fondimpresa / Fondi Interpro.</option>
+                        <option value="Privato">Investimento diretto aziendale</option>
+                        <option value="Da Valutare">Da valutare con i vostri consulenti</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="flex justify-between mt-10">
+                <button onclick="prevStep()" id="prevBtn" class="px-6 py-3 text-slate-400 hover:text-white transition font-bold uppercase text-xs invisible">Indietro</button>
+                <button onclick="nextStep()" id="nextBtn" class="px-10 py-4 bg-amber-600 rounded-2xl font-black hover:bg-amber-500 transition uppercase tracking-widest text-xs shadow-lg shadow-amber-600/20">Continua</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        let currentStep = 1;
+        const totalSteps = 4;
+
+        function showContactModal() {
+            document.getElementById('modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            updateStep();
+        }
+
+        function hideContactModal() {
+            document.getElementById('modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            currentStep = 1;
+        }
+
+        function nextStep() {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                updateStep();
+            } else {
+                sendMail();
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                updateStep();
+            }
+        }
+
+        function updateStep() {
+            document.querySelectorAll('.step-content').forEach(el => el.classList.remove('active'));
+            document.getElementById(`step-${currentStep}`).classList.add('active');
+            
+            for (let i = 1; i <= totalSteps; i++) {
+                const pb = document.getElementById(`pb-${i}`);
+                if (i <= currentStep) {
+                    pb.classList.remove('bg-white/10');
+                    pb.classList.add('bg-amber-600');
+                } else {
+                    pb.classList.remove('bg-amber-600');
+                    pb.classList.add('bg-white/10');
+                }
+            }
+
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            if (currentStep === 1) prevBtn.classList.add('invisible');
+            else prevBtn.classList.remove('invisible');
+
+            if (currentStep === totalSteps) nextBtn.innerText = 'Richiedi Proposta';
+            else nextBtn.innerText = 'Continua';
+        }
+
+        function sendMail() {
+            const data = {
+                nome: document.getElementById('ans-nome').value,
+                azienda: document.getElementById('ans-azienda').value,
+                settore: document.getElementById('ans-settore').value,
+                area: document.getElementById('ans-area').value,
+                problema: document.getElementById('ans-problema').value,
+                frequenza: document.getElementById('ans-frequenza').value,
+                impatto: document.getElementById('ans-impatto').value,
+                persone: document.getElementById('ans-persone').value,
+                finanziamento: document.getElementById('ans-finanziamento').value
+            };
+
+            const subject = encodeURIComponent(`Richiesta Innovazione Industria TTF - ${data.azienda}`);
+            const body = encodeURIComponent(
+                `Gentile Team TechTalentFactory,\n\n` +
+                `In seguito alla compilazione dell'assessment sul vostro portale,\n` +
+                `invio la sintesi delle esigenze per ${data.azienda} (Settore ${data.settore}).\n\n` +
+                `SINTESI FABBISOGNO:\n` +
+                `1. AMBITO DI INTERVENTO: ${data.area}\n` +
+                `2. DETTAGLIO COLLO DI BOTTIGLIA: ${data.problema}\n` +
+                `3. PRIORITÀ: ${data.frequenza}\n` +
+                `4. OBIETTIVO ROI: ${data.impatto}\n\n` +
+                `DATI OPERATIVI:\n` +
+                `- Personale da coinvolgere: ${data.persone}\n` +
+                `- Preferenza finanziamento: ${data.finanziamento}\n\n` +
+                `In attesa di un vostro riscontro per organizzare un sopralluogo tecnico o una call di approfondimento.\n\n` +
+                `Cordiali saluti,\n` +
+                `${data.nome}`
+            );
+
+            window.location.href = `mailto:direzione@itstechtalentfactory.it?subject=${subject}&body=${body}`;
+            hideContactModal();
+        }
+    </script>
+</body>
+</html>
