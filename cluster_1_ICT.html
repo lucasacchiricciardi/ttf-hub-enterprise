@@ -20,9 +20,6 @@
         .accent-glow {
             box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
         }
-        .text-glow {
-            text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
-        }
         .step-content { display: none; }
         .step-content.active { display: block; }
     </style>
@@ -33,13 +30,13 @@
     <nav class="fixed w-full z-50 py-3 px-6 border-b border-white/10 card-glass">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <a href="https://www.itstechtalentfactory.it" target="_blank" class="flex items-center gap-4">
-                <img src="https://www.itstechtalentfactory.it/wp-content/uploads/2024/10/ITS-Academy-Tech-Talent-Factory.png" alt="ITS Academy Tech Talent Factory" class="h-10 md:h-12 w-auto brightness-110">
-                <div class="hidden sm:block h-6 w-px bg-white/20 mx-2"></div>
-                <span class="font-bold text-lg tracking-tight hidden sm:inline-block">ENTERPRISE <span class="text-sky-400 font-normal">UPSKILLING</span></span>
+                <img src="https://www.itstechtalentfactory.it/wp-content/uploads/2024/10/ITS-Academy-Tech-Talent-Factory.png" alt="ITS Academy Tech Talent Factory" class="h-10 w-auto">
+                <div class="hidden sm:block h-6 w-px bg-white/20"></div>
+                <span class="font-bold text-lg hidden sm:inline">ENTERPRISE <span class="text-sky-400">ICT</span></span>
             </a>
             <div class="hidden md:flex gap-8 text-sm font-medium">
                 <a href="#vision" class="hover:text-sky-400 transition">Vision</a>
-                <a href="#corsi" class="hover:text-sky-400 transition">Corsi Executive</a>
+                <a href="#catalogo" class="hover:text-sky-400 transition">Catalogo B2B</a>
                 <a href="#metodo" class="hover:text-sky-400 transition">Metodo ICE</a>
             </div>
             <button class="bg-sky-600 hover:bg-sky-500 text-white px-5 py-2 rounded-full text-sm font-semibold transition" onclick="showContactModal()">
@@ -48,191 +45,114 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <header id="vision" class="pt-40 pb-24 px-6 gradient-bg">
         <div class="max-w-4xl mx-auto text-center">
-            <div class="inline-flex items-center gap-2 bg-sky-500/10 text-sky-400 px-4 py-1.5 rounded-full text-xs font-bold mb-6 border border-sky-500/20">
-                <i data-lucide="trending-up" class="w-3 h-3"></i> OLTRE IL 90% DI PLACEMENT RATE - STANDARD TTF
+            <div class="inline-flex items-center gap-2 bg-sky-500/10 text-sky-400 px-4 py-1.5 rounded-full text-xs font-bold mb-6 border border-sky-500/20 uppercase">
+                <i data-lucide="shield-check" class="w-3 h-3"></i> Formazione Erogata dai Top Specialist ICT
             </div>
             <h1 class="text-5xl md:text-7xl font-bold mb-6 tracking-tight text-white leading-tight">
-                Upskilling ad <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-indigo-500 text-glow">Alta Velocità</span> per i Partner.
+                L'Upskilling per chi <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-indigo-500">Costruisce il Futuro</span>.
             </h1>
             <p class="text-lg md:text-xl text-slate-400 mb-10 leading-relaxed max-w-2xl mx-auto">
-                Trasforma i tuoi team tech in asset strategici. Portiamo l'intelligenza artificiale e il mindset orientato ai dati direttamente nei tuoi flussi di delivery.
+                Sfrutta l'expertise dei professionisti che guidano i nostri corsi ITS. Percorsi intensivi per Senior Dev, Cloud Architect e Data Engineer dei tuoi team.
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#corsi" class="bg-white text-slate-900 px-8 py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-sky-400 transition shadow-lg shadow-sky-500/10">
-                    Esplora l'Offerta <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            <div class="flex justify-center">
+                <a href="#catalogo" class="bg-white text-slate-900 px-8 py-4 rounded-xl font-bold flex items-center gap-2 hover:bg-sky-400 transition">
+                    Esplora il Catalogo <i data-lucide="arrow-down" class="w-5 h-5"></i>
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- Problems / Pain Points -->
-    <section class="py-20 px-6">
+    <!-- Nuova Sezione: Catalogo Executive derivato dai piani didattici -->
+    <section id="catalogo" class="py-24 px-6 bg-slate-900/30">
         <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Le Sfide del Cluster ICT</h2>
-                <p class="text-slate-400 max-w-2xl mx-auto">Supportiamo i System Integrator nel colmare il gap tra competenze tradizionali e innovazione radicale.</p>
+            <div class="mb-16">
+                <h2 class="text-4xl font-bold mb-4 uppercase tracking-tighter">Catalogo Upskilling <span class="text-sky-400">Expert-Led</span></h2>
+                <p class="text-slate-400">Corsi intensivi (40-60h) basati sulle competenze core dei nostri percorsi biennali.</p>
             </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="card-glass p-8 rounded-3xl border-t-2 border-t-sky-500/30">
-                    <i data-lucide="brain" class="text-sky-500 mb-6 w-10 h-10"></i>
-                    <h3 class="text-xl font-bold mb-3 uppercase tracking-tight">Evoluzione AI Generativa</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Andiamo oltre il semplice prompt. Insegniamo l'integrazione di flussi agentici e <strong>Vibe Coding</strong> per massimizzare la produttività.</p>
-                </div>
-                <div class="card-glass p-8 rounded-3xl border-t-2 border-t-sky-500/30">
-                    <i data-lucide="shield-alert" class="text-sky-500 mb-6 w-10 h-10"></i>
-                    <h3 class="text-xl font-bold mb-3 uppercase tracking-tight">Security-First Culture</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Formiamo specialisti capaci di blindare le infrastrutture Cloud e gestire la compliance dei dati in scenari complessi.</p>
-                </div>
-                <div class="card-glass p-8 rounded-3xl border-t-2 border-t-sky-500/30">
-                    <i data-lucide="gauge" class="text-sky-500 mb-6 w-10 h-10"></i>
-                    <h3 class="text-xl font-bold mb-3 uppercase tracking-tight">Mindset T-Shaped</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Sviluppatori che non scrivono solo codice, ma comprendono le metriche di business e il valore del <strong>Funnel AAARRR</strong>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Corsi Executive -->
-    <section id="corsi" class="py-24 px-6 bg-slate-900/50">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-4xl font-bold mb-16 text-center">Moduli Formativi <span class="text-sky-400">Targetizzati</span></h2>
-            
-            <div class="grid lg:grid-cols-3 gap-10">
-                <!-- Proposta 1 -->
-                <div class="flex flex-col bg-slate-800/40 rounded-[2rem] overflow-hidden border border-white/5 accent-glow transition-all hover:-translate-y-2 hover:border-sky-500/50">
-                    <div class="p-10">
-                        <div class="bg-sky-500/20 text-sky-400 text-[10px] font-black uppercase px-3 py-1 rounded-md mb-6 w-fit tracking-tighter">TECH INNOVATION</div>
-                        <h3 class="text-2xl font-bold mb-4 text-white">AI MANAGEMENT & VIBE CODING</h3>
-                        <p class="text-slate-400 text-sm mb-8 leading-relaxed">
-                            Ottimizzazione dei tempi di sviluppo tramite GenAI (Cursor, Lovable, n8n). Creazione di MVP in tempi record e gestione di workflow intelligenti.
-                        </p>
-                        <ul class="space-y-4 mb-10">
-                            <li class="flex items-start gap-3 text-sm">
-                                <i data-lucide="check" class="text-sky-500 w-5 h-5 shrink-0"></i>
-                                <span>Agentic Coding Workflows</span>
-                            </li>
-                            <li class="flex items-start gap-3 text-sm">
-                                <i data-lucide="check" class="text-sky-500 w-5 h-5 shrink-0"></i>
-                                <span>Automazione Documentale AI</span>
-                            </li>
-                            <li class="flex items-start gap-3 text-sm">
-                                <i data-lucide="check" class="text-sky-500 w-5 h-5 shrink-0"></i>
-                                <span>Fast Prototyping x20</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="mt-auto p-8 bg-sky-900/10 border-t border-white/5">
-                        <button class="w-full py-4 bg-sky-600 rounded-2xl font-bold hover:bg-sky-500 transition shadow-lg shadow-sky-900/20" onclick="showContactModal()">RICHIEDI SCHEDA</button>
-                    </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Modulo 1: AI Architect -->
+                <div class="card-glass p-8 rounded-3xl flex flex-col border-l-4 border-l-sky-500">
+                    <div class="mb-6"><i data-lucide="brain-circuit" class="text-sky-400 w-10 h-10"></i></div>
+                    <h3 class="text-xl font-bold mb-4 text-white uppercase">Agentic AI & RAG Mastery</h3>
+                    <p class="text-slate-400 text-sm mb-6 flex-grow leading-relaxed">
+                        Implementazione di architetture <strong>RAG</strong> e fine-tuning di modelli LLM con Python, TensorFlow e PyTorch. Deploy scalabile su Azure/AWS.
+                    </p>
+                    <div class="text-[10px] font-bold text-sky-400 uppercase tracking-widest mb-4">Competenze Docenti: AI Architect</div>
+                    <button class="w-full py-3 bg-white/5 border border-white/10 rounded-xl text-xs font-bold hover:bg-sky-600 transition" onclick="showContactModal()">Dettagli Modulo</button>
                 </div>
 
-                <!-- Proposta 2 -->
-                <div class="flex flex-col bg-slate-800/40 rounded-[2rem] overflow-hidden border border-white/5 accent-glow transition-all hover:-translate-y-2 hover:border-sky-500/50">
-                    <div class="p-10">
-                        <div class="bg-emerald-500/20 text-emerald-400 text-[10px] font-black uppercase px-3 py-1 rounded-md mb-6 w-fit tracking-tighter">INFRASTRUCTURE</div>
-                        <h3 class="text-2xl font-bold mb-4 text-white uppercase tracking-tight">Cyber Security Operativa</h3>
-                        <p class="text-slate-400 text-sm mb-8 leading-relaxed">
-                            Hardening delle infrastrutture Cloud e blindatura del codice sorgente. Strategie pratiche per minimizzare i rischi di leak e incidenti.
-                        </p>
-                        <ul class="space-y-4 mb-10">
-                            <li class="flex items-start gap-3 text-sm">
-                                <i data-lucide="check" class="text-emerald-500 w-5 h-5 shrink-0"></i>
-                                <span>Cloud Hardening Specialist</span>
-                            </li>
-                            <li class="flex items-start gap-3 text-sm">
-                                <i data-lucide="check" class="text-emerald-500 w-5 h-5 shrink-0"></i>
-                                <span>AI-Assisted Security Audit</span>
-                            </li>
-                            <li class="flex items-start gap-3 text-sm">
-                                <i data-lucide="check" class="text-emerald-500 w-5 h-5 shrink-0"></i>
-                                <span>Incident Response Team</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="mt-auto p-8 bg-emerald-900/10 border-t border-white/5">
-                        <button class="w-full py-4 bg-emerald-600 rounded-2xl font-bold hover:bg-emerald-500 transition" onclick="showContactModal()">RICHIEDI SCHEDA</button>
-                    </div>
+                <!-- Modulo 2: Cloud/Cyber Hardening -->
+                <div class="card-glass p-8 rounded-3xl flex flex-col border-l-4 border-l-emerald-500">
+                    <div class="mb-6"><i data-lucide="lock" class="text-emerald-400 w-10 h-10"></i></div>
+                    <h3 class="text-xl font-bold mb-4 text-white uppercase">Infrastructure Hardening</h3>
+                    <p class="text-slate-400 text-sm mb-6 flex-grow leading-relaxed">
+                        Strategie Blue Team per la difesa di ambienti ibridi Cloud/On-Premise. Gestione incidenti e hardening di architetture Docker/K8s.
+                    </p>
+                    <div class="text-[10px] font-bold text-emerald-400 uppercase tracking-widest mb-4">Competenze Docenti: Cyber Specialist</div>
+                    <button class="w-full py-3 bg-white/5 border border-white/10 rounded-xl text-xs font-bold hover:bg-emerald-600 transition" onclick="showContactModal()">Dettagli Modulo</button>
                 </div>
 
-                <!-- Proposta 3 -->
-                <div class="flex flex-col bg-slate-800/40 rounded-[2rem] overflow-hidden border border-white/5 accent-glow transition-all hover:-translate-y-2 hover:border-sky-500/50">
-                    <div class="p-10">
-                        <div class="bg-indigo-500/20 text-indigo-400 text-[10px] font-black uppercase px-3 py-1 rounded-md mb-6 w-fit tracking-tighter">BUSINESS GROWTH</div>
-                        <h3 class="text-2xl font-bold mb-4 text-white uppercase tracking-tight">High Tempo Testing</h3>
-                        <p class="text-slate-400 text-sm mb-8 leading-relaxed">
-                            Integrare il mindset agile del Growth Hacking nei team tecnici. Sperimentazione rapida su prodotto e distribuzione per scalare il business.
-                        </p>
-                        <ul class="space-y-4 mb-10">
-                            <li class="flex items-start gap-3 text-sm">
-                                <i data-lucide="check" class="text-indigo-500 w-5 h-5 shrink-0"></i>
-                                <span>Framework Funnel AAARRR</span>
-                            </li>
-                            <li class="flex items-start gap-3 text-sm">
-                                <i data-lucide="check" class="text-indigo-500 w-5 h-5 shrink-0"></i>
-                                <span>ICE Scoring Prioritization</span>
-                            </li>
-                            <li class="flex items-start gap-3 text-sm">
-                                <i data-lucide="check" class="text-indigo-500 w-5 h-5 shrink-0"></i>
-                                <span>Data-Driven Decision Process</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="mt-auto p-8 bg-indigo-900/10 border-t border-white/5">
-                        <button class="w-full py-4 bg-indigo-600 rounded-2xl font-bold hover:bg-indigo-500 transition" onclick="showContactModal()">RICHIEDI SCHEDA</button>
-                    </div>
+                <!-- Modulo 3: Data Strategy -->
+                <div class="card-glass p-8 rounded-3xl flex flex-col border-l-4 border-l-indigo-500">
+                    <div class="mb-6"><i data-lucide="database" class="text-indigo-400 w-10 h-10"></i></div>
+                    <h3 class="text-xl font-bold mb-4 text-white uppercase">Data Storytelling & BI</h3>
+                    <p class="text-slate-400 text-sm mb-6 flex-grow leading-relaxed">
+                        Dalla modellazione SQL/NoSQL alla visualizzazione avanzata con Power BI e Spark. Trasforma i Big Data in decisioni strategiche.
+                    </p>
+                    <div class="text-[10px] font-bold text-indigo-400 uppercase tracking-widest mb-4">Competenze Docenti: Data Engineer</div>
+                    <button class="w-full py-3 bg-white/5 border border-white/10 rounded-xl text-xs font-bold hover:bg-indigo-600 transition" onclick="showContactModal()">Dettagli Modulo</button>
+                </div>
+
+                <!-- Modulo 4: DevSecOps -->
+                <div class="card-glass p-8 rounded-3xl flex flex-col border-l-4 border-l-orange-500">
+                    <div class="mb-6"><i data-lucide="git-branch" class="text-orange-400 w-10 h-10"></i></div>
+                    <h3 class="text-xl font-bold mb-4 text-white uppercase">DevSecOps & CI/CD Pipeline</h3>
+                    <p class="text-slate-400 text-sm mb-6 flex-grow leading-relaxed">
+                        Automazione dell'intero ciclo di vita software con Java/Spring Boot e Angular. Integrazione della sicurezza direttamente nelle pipeline Git.
+                    </p>
+                    <div class="text-[10px] font-bold text-orange-400 uppercase tracking-widest mb-4">Competenze Docenti: Senior FullStack</div>
+                    <button class="w-full py-3 bg-white/5 border border-white/10 rounded-xl text-xs font-bold hover:bg-orange-600 transition" onclick="showContactModal()">Dettagli Modulo</button>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Metodo Section -->
-    <section id="metodo" class="py-24 px-6">
+    <section id="metodo" class="py-24 px-6 border-t border-white/5">
         <div class="max-w-4xl mx-auto card-glass p-12 rounded-[2.5rem] border border-sky-500/20 text-center relative overflow-hidden">
-            <div class="absolute -top-10 -right-10 w-40 h-40 bg-sky-500/10 blur-3xl"></div>
-            <h2 class="text-3xl font-bold mb-6">Un Framework Scientifico</h2>
+            <h2 class="text-3xl font-bold mb-6">Il Metodo Scientifico TTF</h2>
             <p class="text-slate-400 mb-10 leading-relaxed text-lg">
-                Utilizziamo il metodo <strong>I.C.E.</strong> per garantire che ogni ora di formazione abbia un impatto reale sulle performance aziendali. 
-                Massima confidenza nei risultati, minima frizione operativa.
+                Applichiamo il framework <strong>I.C.E.</strong> per dare priorità ai moduli formativi che sbloccano il maggior valore operativo per la tua azienda.
             </p>
-            <div class="flex justify-center flex-wrap gap-8 text-sky-400 font-mono text-2xl font-bold uppercase tracking-widest">
-                <span class="opacity-50">Impact</span> 
-                <span class="text-white">+</span>
-                <span class="opacity-75">Confidence</span> 
-                <span class="text-white">+</span>
-                <span>Ease</span>
+            <div class="flex justify-center gap-8 text-sky-400 font-mono text-2xl font-bold">
+                <span>IMPACT</span> + <span>CONFIDENCE</span> + <span>EASE</span>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-16 border-t border-white/10 px-6 bg-slate-950">
+    <footer class="py-16 border-t border-white/10 px-6">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
             <div class="flex flex-col items-center md:items-start gap-4">
-                <img src="https://www.itstechtalentfactory.it/wp-content/uploads/2024/10/ITS-Academy-Tech-Talent-Factory.png" alt="Logo TTF" class="h-10 w-auto opacity-70 grayscale hover:grayscale-0 transition cursor-pointer">
-                <p class="text-slate-500 text-xs text-center md:text-left">
-                    © 2026 TechTalentFactory Academy. <br>
-                    Sviluppo Strategico B2B per l'Eccellenza Digitale.
-                </p>
+                <img src="https://www.itstechtalentfactory.it/wp-content/uploads/2024/10/ITS-Academy-Tech-Talent-Factory.png" alt="Logo TTF" class="h-10 w-auto opacity-70">
+                <p class="text-slate-500 text-xs">© 2026 TechTalentFactory Academy. <br> Eccellenza Formativa B2B.</p>
             </div>
-            <div class="flex flex-col items-center md:items-end gap-6">
-                <div class="flex gap-6">
-                    <a href="https://www.linkedin.com/company/its-tech-talent-factory/" target="_blank" class="text-slate-400 hover:text-white transition"><i data-lucide="linkedin"></i></a>
-                    <a href="https://www.itstechtalentfactory.it" target="_blank" class="text-slate-400 hover:text-white transition"><i data-lucide="globe"></i></a>
-                </div>
-                <button class="text-sky-500 font-bold text-sm uppercase hover:text-sky-300 transition" onclick="showContactModal()">Privacy Policy & GDPR</button>
+            <div class="flex gap-6">
+                <a href="https://www.linkedin.com/company/its-tech-talent-factory/" target="_blank" class="text-slate-400 hover:text-white transition"><i data-lucide="linkedin"></i></a>
+                <a href="https://www.itstechtalentfactory.it" target="_blank" class="text-slate-400 hover:text-white transition"><i data-lucide="globe"></i></a>
             </div>
         </div>
     </footer>
 
-    <!-- Multi-Step Qualification Modal -->
-    <div id="modal" class="hidden fixed inset-0 bg-black/90 z-[100] flex items-center justify-center p-6 backdrop-blur-sm overflow-y-auto">
+    <!-- Lead Qualification Modal -->
+    <div id="modal" class="hidden fixed inset-0 bg-black/95 z-[100] flex items-center justify-center p-6 backdrop-blur-sm overflow-y-auto">
         <div class="bg-slate-900 border border-white/10 p-8 md:p-10 rounded-[2.5rem] max-w-xl w-full relative shadow-2xl my-auto">
             <button onclick="hideContactModal()" class="absolute top-8 right-8 text-slate-400 hover:text-white"><i data-lucide="x"></i></button>
             
-            <!-- Progress Bar -->
             <div class="flex gap-2 mb-8 h-1">
                 <div class="flex-1 rounded-full bg-sky-600" id="pb-1"></div>
                 <div class="flex-1 rounded-full bg-white/10" id="pb-2"></div>
@@ -243,63 +163,60 @@
             <!-- Step 1: Profiling -->
             <div class="step-content active" id="step-1">
                 <h3 class="text-2xl font-bold mb-2 uppercase tracking-tight">Chi Siete?</h3>
-                <p class="text-slate-400 text-sm mb-8 leading-relaxed">Iniziamo dalle basi per contestualizzare l'intervista.</p>
+                <p class="text-slate-400 text-sm mb-8 leading-relaxed">Profilo del richiedente.</p>
                 <div class="space-y-4">
-                    <input type="text" id="ans-nome" placeholder="Il tuo Nome e Cognome" class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl focus:border-sky-500 outline-none transition text-sm">
+                    <input type="text" id="ans-nome" placeholder="Nome e Cognome" class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl focus:border-sky-500 outline-none transition text-sm">
                     <input type="text" id="ans-azienda" placeholder="Nome Azienda" class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl focus:border-sky-500 outline-none transition text-sm">
-                    <input type="text" id="ans-ruolo" placeholder="Il tuo Ruolo (es. CTO, HR Manager)" class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl focus:border-sky-500 outline-none transition text-sm">
+                    <input type="text" id="ans-ruolo" placeholder="Il tuo Ruolo (es. CTO, IT Manager)" class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl focus:border-sky-500 outline-none transition text-sm">
                 </div>
             </div>
 
             <!-- Step 2: Problem Identification -->
             <div class="step-content" id="step-2">
-                <h3 class="text-2xl font-bold mb-2 uppercase tracking-tight">Il "Mal di Pancia"</h3>
-                <p class="text-slate-400 text-sm mb-8 leading-relaxed">Qual è il collo di bottiglia tecnico che frena la vostra crescita?</p>
+                <h3 class="text-2xl font-bold mb-2 uppercase tracking-tight">Focus Tecnico</h3>
+                <p class="text-slate-400 text-sm mb-8 leading-relaxed">Quale modulo vorresti approfondire?</p>
                 <div class="space-y-4">
                     <select id="ans-area" class="w-full bg-slate-800 border border-white/10 p-4 rounded-2xl focus:border-sky-500 outline-none transition text-sm text-white">
-                        <option value="">Seleziona Area Critica</option>
-                        <option value="AI Integration">Integrazione AI nei processi dev</option>
-                        <option value="Security">Sicurezza Cloud e Compliance</option>
-                        <option value="Mindset">Mindset Sperimentale (Growth)</option>
-                        <option value="Talent">Mancanza di Seniority Specialistica</option>
+                        <option value="">Seleziona Percorso Executive</option>
+                        <option value="AI-RAG">Agentic AI & RAG Mastery</option>
+                        <option value="Hardening">Infrastructure Hardening</option>
+                        <option value="Data-BI">Data Storytelling & BI</option>
+                        <option value="DevSecOps">DevSecOps & CI/CD</option>
                     </select>
-                    <textarea id="ans-problema" placeholder="Descrivi brevemente la sfida principale..." class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl focus:border-sky-500 outline-none transition h-28 text-sm"></textarea>
+                    <textarea id="ans-problema" placeholder="Quali sono gli obiettivi tecnici del tuo team?" class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl focus:border-sky-500 outline-none transition h-28 text-sm"></textarea>
                 </div>
             </div>
 
-            <!-- Step 3: Urgency & Impact -->
+            <!-- Step 3: Impact -->
             <div class="step-content" id="step-3">
-                <h3 class="text-2xl font-bold mb-2 uppercase tracking-tight">Impatto Reale</h3>
-                <p class="text-slate-400 text-sm mb-8 leading-relaxed">Quanto scotta questo problema sulla scala delle priorità?</p>
+                <h3 class="text-2xl font-bold mb-2 uppercase tracking-tight">Impatto Atteso</h3>
+                <p class="text-slate-400 text-sm mb-8 leading-relaxed">Quantifichiamo il valore.</p>
                 <div class="space-y-4">
-                    <div class="text-xs uppercase font-bold text-sky-400 mb-2">Con che frequenza si presenta?</div>
                     <select id="ans-frequenza" class="w-full bg-slate-800 border border-white/10 p-4 rounded-2xl focus:border-sky-500 outline-none transition text-sm text-white">
-                        <option value="Daily">Ogni Giorno (Bloccante)</option>
-                        <option value="Weekly">Ogni Settimana (Rallenta la delivery)</option>
-                        <option value="Monthly">Una volta al mese (Fastidioso)</option>
-                        <option value="Rare">Raramente (Visione futura)</option>
+                        <option value="Strategic">Pianificazione Strategica 2026</option>
+                        <option value="Immediate">Urgenza su Progetto in corso</option>
+                        <option value="SkillGap">Colmare Gap di Seniority</option>
                     </select>
-                    <div class="text-xs uppercase font-bold text-sky-400 mt-4 mb-2">Che impatto ha sul business?</div>
-                    <input type="text" id="ans-impatto" placeholder="es: Aumento costi, Perdita clienti, Time-to-market lento" class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl focus:border-sky-500 outline-none transition text-sm">
+                    <input type="text" id="ans-impatto" placeholder="es: Accelerazione delivery, Riduzione incidenti security" class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl focus:border-sky-500 outline-none transition text-sm">
                 </div>
             </div>
 
-            <!-- Step 4: Constraints & Goal -->
+            <!-- Step 4: Resources -->
             <div class="step-content" id="step-4">
-                <h3 class="text-2xl font-bold mb-2 uppercase tracking-tight">Obiettivo e Risorse</h3>
-                <p class="text-slate-400 text-sm mb-8 leading-relaxed">Definiamo il perimetro dell'intervento formativo.</p>
+                <h3 class="text-2xl font-bold mb-2 uppercase tracking-tight">Esecuzione</h3>
+                <p class="text-slate-400 text-sm mb-8 leading-relaxed">Parametri operativi.</p>
                 <div class="space-y-4">
-                    <input type="number" id="ans-persone" placeholder="Numero dipendenti da coinvolgere" class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl focus:border-sky-500 outline-none transition text-sm">
+                    <input type="number" id="ans-persone" placeholder="Numero collaboratori coinvolti" class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl focus:border-sky-500 outline-none transition text-sm">
                     <select id="ans-timeline" class="w-full bg-slate-800 border border-white/10 p-4 rounded-2xl focus:border-sky-500 outline-none transition text-sm text-white">
-                        <option value="">Quando vorreste partire?</option>
-                        <option value="ASAP">Subito (ASAP)</option>
-                        <option value="1-3 months">Entro 3 mesi</option>
-                        <option value="6 months">Entro 6 mesi</option>
+                        <option value="">Quando vorreste iniziare?</option>
+                        <option value="ASAP">Subito (Q2 2026)</option>
+                        <option value="Q3/Q4">Entro l'anno</option>
+                        <option value="Future">Valutazione budget futuro</option>
                     </select>
                 </div>
             </div>
 
-            <!-- Navigation Buttons -->
+            <!-- Navigation -->
             <div class="flex justify-between mt-10">
                 <button onclick="prevStep()" id="prevBtn" class="px-6 py-3 text-slate-400 hover:text-white transition font-bold uppercase text-xs invisible">Indietro</button>
                 <button onclick="nextStep()" id="nextBtn" class="px-10 py-4 bg-sky-600 rounded-2xl font-black hover:bg-sky-500 transition uppercase tracking-widest text-xs shadow-lg shadow-sky-600/20">Continua</button>
@@ -309,7 +226,6 @@
 
     <script>
         lucide.createIcons();
-
         let currentStep = 1;
         const totalSteps = 4;
 
@@ -322,7 +238,7 @@
         function hideContactModal() {
             document.getElementById('modal').classList.add('hidden');
             document.body.style.overflow = 'auto';
-            currentStep = 1; // Reset
+            currentStep = 1;
         }
 
         function nextStep() {
@@ -342,32 +258,18 @@
         }
 
         function updateStep() {
-            // Hide all
             document.querySelectorAll('.step-content').forEach(el => el.classList.remove('active'));
-            // Show current
             document.getElementById(`step-${currentStep}`).classList.add('active');
-            
-            // Update Progress Bar
             for (let i = 1; i <= totalSteps; i++) {
                 const pb = document.getElementById(`pb-${i}`);
-                if (i <= currentStep) {
-                    pb.classList.remove('bg-white/10');
-                    pb.classList.add('bg-sky-600');
-                } else {
-                    pb.classList.remove('bg-sky-600');
-                    pb.classList.add('bg-white/10');
-                }
+                if (i <= currentStep) pb.classList.replace('bg-white/10', 'bg-sky-600');
+                else pb.classList.replace('bg-sky-600', 'bg-white/10');
             }
-
-            // Buttons visibility
             const prevBtn = document.getElementById('prevBtn');
             const nextBtn = document.getElementById('nextBtn');
-            
             if (currentStep === 1) prevBtn.classList.add('invisible');
             else prevBtn.classList.remove('invisible');
-
-            if (currentStep === totalSteps) nextBtn.innerText = 'Invia Proposta';
-            else nextBtn.innerText = 'Continua';
+            nextBtn.innerText = currentStep === totalSteps ? 'Invia Richiesta' : 'Continua';
         }
 
         function sendMail() {
@@ -382,24 +284,15 @@
                 persone: document.getElementById('ans-persone').value,
                 timeline: document.getElementById('ans-timeline').value
             };
-
-            const subject = encodeURIComponent(`Richiesta Assessment B2B TTF - ${data.azienda}`);
+            const subject = encodeURIComponent(`Richiesta Upskilling ICT TTF - ${data.azienda}`);
             const body = encodeURIComponent(
-                `Ciao Team TechTalentFactory,\n\n` +
-                `Sono ${data.nome} e ricopro il ruolo di ${data.ruolo} presso ${data.azienda}.\n\n` +
-                `Abbiamo completato l'intervista di qualificazione sul vostro sito. Ecco i dettagli:\n\n` +
-                `1. AREA DI INTERESSE: ${data.area}\n` +
-                `2. SFIDA PRINCIPALE: ${data.problema}\n` +
-                `3. FREQUENZA DEL PROBLEMA: ${data.frequenza}\n` +
-                `4. IMPATTO SUL BUSINESS: ${data.impatto}\n\n` +
-                `PARAMETRI OPERATIVI:\n` +
-                `- Persone da formare: ${data.persone}\n` +
-                `- Timeline prevista: ${data.timeline}\n\n` +
-                `Restiamo in attesa di un vostro contatto per approfondire la fattibilità tecnica.\n\n` +
-                `Cordiali saluti,\n` +
-                `${data.nome}`
+                `Ciao Team TTF,\n\nSono ${data.nome} (${data.ruolo}) di ${data.azienda}.\n\n` +
+                `Interessato al modulo: ${data.area}\n` +
+                `Dettagli: ${data.problema}\n` +
+                `Contesto: ${data.frequenza}\n` +
+                `Goal: ${data.impatto}\n\n` +
+                `Volume: ${data.persone} persone\nTimeline: ${data.timeline}\n\nSaluti!`
             );
-
             window.location.href = `mailto:direzione@itstechtalentfactory.it?subject=${subject}&body=${body}`;
             hideContactModal();
         }
