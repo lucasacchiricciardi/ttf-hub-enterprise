@@ -16,11 +16,23 @@ Il sito web presenta un ecosistema di soluzioni formative modulari (MVO - Minimu
 - **Industry Solutions**: Cataloghi dedicati per ICT, Servizi, PA, e Industria
 - **Ecosistema Partner**: Oltre 100 aziende partner con placement rate del 90%
 
+## Pagine del Sito
+
+| Pagina | Descrizione | Link |
+|--------|-------------|------|
+| **Homepage** | Pagina principale con overview dell'offerta, framework I.C.E. e accesso ai cluster industry | [Apri](https://lucasacchiricciardi.github.io/ttf-hub-enterprise/) |
+| **Presentazione** | Slide di presentazione del Consorzio TTF: algoritmo data-driven, visione nazionale e fondi interprofessionali | [Apri](https://lucasacchiricciardi.github.io/ttf-hub-enterprise/index2.html) |
+| **ICT** | Catalogo MVO System Integration & Software: Agentic AI, DevSecOps, Hardening, Spatial Computing | [Apri](https://lucasacchiricciardi.github.io/ttf-hub-enterprise/ict/) |
+| **Servizi & BPO** | Catalogo MVO per agenzie e retail: Lean AI, ottimizzazione vendite, CRM data-driven, Corporate Gamification | [Apri](https://lucasacchiricciardi.github.io/ttf-hub-enterprise/servizi/) |
+| **PA & Sanità** | Catalogo MVO Pubblica Amministrazione: transizione digitale, Project Management IT, GDPR, Open Data, Urban Digital Twins | [Apri](https://lucasacchiricciardi.github.io/ttf-hub-enterprise/pa/) |
+| **Industria 4.0** | Catalogo MVO Manifatturiero: Social Export, Paperless Officina, VR Training, Cyber Industriale, IoT | [Apri](https://lucasacchiricciardi.github.io/ttf-hub-enterprise/industria/) |
+
 ## Struttura del Progetto
 
 ```
 TTF/
-├── index.html              # Pagina principale con navigazione e overview
+├── index.html              # Homepage
+├── index2.html             # Presentazione Consorzio
 ├── ict/
 │   └── index.html          # Catalogo ICT (System Integration & Software)
 ├── servizi/
